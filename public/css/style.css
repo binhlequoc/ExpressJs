@@ -1,0 +1,59 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.user>img {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+}
+
+.header {
+    background-color: #3252a8;
+}
+
+
+#logo {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+
+}
+
+.nav-main>form>input {
+    border: none;
+    border-radius: 4px;
+}
+
+.nav-main>form>input:focus {
+    outline: none;
+    box-shadow: 0px 0px 15px rgb(170, 183, 243);
+}
+
+.content {
+    background-color: rgb(240, 240, 240);
+}
+
+.left>ul {
+    list-style: none;
+
+}
+
+.left>ul>li>a {
+    color: black;
+}
+
+
+.content-main {
+    background-color: white;
+}

@@ -1,0 +1,42 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Document
+        link(rel="stylesheet", href="css/style.css")
+        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css",integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor", crossorigin="anonymous")
+        
+    body 
+        .header.container-fluid
+            .container-xxl.px-0
+                .navbar.d-flex.align-items-center
+                    .left
+                        a#logo Fotobook
+                    .nav-main.d-flex.w-75.justify-content-between
+                        form.w-50(action="", method="post") 
+                            input.h-100.w-100.px-2(type='text',placeholder="search photo/album")
+                        .user.d-flex.align-items-center
+                            img(src="img/icon.jpg", alt="", srcset="")
+                            a.ms-2(href="")  Quoc Binh
+                    .right
+                        a(href="") Logout 
+        .content.container-fluid
+            .container-xxl.px-0
+                .navbar.d-flex.align-items-center
+                    .left
+                        ul.ps-0 
+                            li 
+                                a(href="#") Feeds 
+                            li 
+                                a(href="#") My Photos 
+                            li 
+                                a(href="#") My Albums
+                    .content-main.d-flex.w-75.justify-content-between
+                        h1 abcasd
+                    .right
+                        
+        
+
+        script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js",integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2",crossorigin="anonymous") 
