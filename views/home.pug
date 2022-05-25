@@ -11,21 +11,23 @@ html(lang="en")
     body 
         .header.container-fluid
             .container-xxl.px-0
-                .navbar.d-flex.align-items-center
-                    .left
+                .navbar.row.align-items-center
+                    .left.col-1
                         a#logo Fotobook
-                    .nav-main.d-flex.w-75.justify-content-between
+                    .nav-main.d-flex.w-75.col-10.justify-content-between.px-0
                         form.w-50(action="", method="post") 
                             input.h-100.w-100.px-2(type='text',placeholder="search photo/album")
                         .user.d-flex.align-items-center
                             img(src="img/icon.jpg", alt="", srcset="")
                             a.ms-2(href="")  Quoc Binh
-                    .right
+                    .right.col-1.d-sm-none
+                        a(href="") Logout
+                    .right.col-1.d-xl-block
                         a(href="") Logout 
         .content.container-fluid
             .container-xxl.px-0
-                .navbar.d-flex.align-items-center
-                    .left
+                .navbar.row
+                    .left.col-1
                         ul.ps-0 
                             li 
                                 a(href="#") Feeds 
@@ -33,9 +35,16 @@ html(lang="en")
                                 a(href="#") My Photos 
                             li 
                                 a(href="#") My Albums
-                    .content-main.d-flex.w-75.justify-content-between
-                        h1 abcasd
-                    .right
+                    .content-main.d-flex.w-75.justify-content-between.col-10.py-4
+                        .card.row.g-0
+                            .col-md-4
+                                img(src="img/icon.jpg", alt="" style="width: 10rem;")
+                            .col-md-8
+                                .card-body
+                                    h5.card-title Nam tempore  
+                                    p.card-text sdajkdaskndknkl asjbndjkbfbasbc slajdlkscanklknln
+
+                    .right.col-1
                         
         
 
