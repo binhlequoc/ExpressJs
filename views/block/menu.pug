@@ -1,0 +1,6 @@
+mixin menu(items)
+    .left.col-1
+        ul.ps-0
+            for item in items
+                li 
+                    a(href=item.link)= item.name

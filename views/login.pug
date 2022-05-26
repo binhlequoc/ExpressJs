@@ -1,0 +1,11 @@
+doctype html
+html(lang="en")
+    include ./block/head.pug
+    body
+        include ./block/header.pug 
+        +header()
+        if message
+            include ./block/signin.pug
+        else 
+            include ./block/signup.pug
+
