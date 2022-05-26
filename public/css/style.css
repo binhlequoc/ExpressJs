@@ -6,7 +6,13 @@
     letter-spacing: .015em;
 }
 
+:root {
+    --main-color: #3252a8
+}
 
+p {
+    margin-bottom: 0 !important;
+}
 
 .user>img {
     width: 32px;
@@ -15,7 +21,7 @@
 }
 
 .header {
-    background-color: #3252a8;
+    background-color: var(--main-color);
 }
 
 
@@ -33,9 +39,14 @@
 
 }
 
+.navbar a:hover {
+    color: white;
+}
+
 .nav-main>form>input {
     border: none;
     border-radius: 4px;
+    padding: .65em;
 }
 
 .nav-main>form>input:focus {
@@ -45,7 +56,7 @@
 
 .content {
     background-color: rgb(240, 240, 240);
-    height: 100vh;
+
 }
 
 .left {
@@ -64,7 +75,7 @@
 }
 
 .left>ul>li>a:hover {
-    color: #3252a8;
+    color: var(--main-color);
 }
 
 
@@ -89,23 +100,23 @@
 
 .group-button button {
     padding: .25em .65em;
-    border: 1px solid #3252a8;
+    border: 1px solid var(--main-color);
     text-transform: uppercase;
     font-weight: 700;
     font-size: .75em;
     background-color: white;
-    color: #3252a8
+    color: var(--main-color);
 }
 
 button.isActive {
-    background-color: #3252a8;
+    background-color: var(--main-color);
     color: white;
 }
 
 .post {
     padding: .75em;
     display: flex;
-
+    position: relative;
     width: 30em;
     height: 14em;
     margin: .45em;
@@ -116,6 +127,7 @@ button.isActive {
 .image-post {
 
     position: relative;
+    width: 15em;
 }
 
 
@@ -153,15 +165,30 @@ button.isActive {
 
 }
 
+
+
 .user-post {
     display: flex;
     align-items: center;
     padding: .25em 0;
+
+}
+
+.content-post>a:hover {
+    color: black;
+    font-size: .875em;
+
 }
 
 .user-post>a {
-    color: #3252a8;
+    color: var(--main-color);
     font-size: .875em;
+
+}
+
+.user-post>a:hover {
+    color: var(--main-color);
+
 }
 
 .user-post>img {
@@ -173,8 +200,21 @@ button.isActive {
 .content-post>a,
 .content-post>p {
     font-size: .875em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+
 
 }
+
+.content-post>p {
+    flex-grow: 3;
+    height: 6em;
+    white-space: normal;
+
+
+}
+
 
 .pagination {
     width: 100%;
@@ -205,11 +245,45 @@ button.isActive {
 }
 
 a.isActive {
-    background-color: #3252a8;
+    background-color: var(--main-color);
     color: white !important;
 }
 
 .pagination>ul>li>a:hover {
-    background-color: #3252a8;
+    background-color: var(--main-color);
     color: white;
+}
+
+.content-post>.more {
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+.content-post.more>i {
+    color: rgb(83, 83, 83);
+}
+
+.content-post>.more>.like {
+    display: flex;
+
+    flex-direction: row;
+}
+
+.content-post>.more>.like>i {
+    font-size: .85em;
+    color: rgb(194, 194, 194) !important;
+}
+
+.content-post>.more p {
+    font-size: .65em !important;
+    color: rgb(83, 83, 83);
+    padding-left: .35em;
+
+}
+
+.content-post {
+    display: flex;
+    flex-direction: column;
 }

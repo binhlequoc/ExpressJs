@@ -1,0 +1,96 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    width: 20em;
+    margin: 4em auto;
+
+}
+
+.login>h2 {
+    color: var(--main-color);
+    text-align: center;
+    font-weight: 600;
+}
+
+.login>form {
+    padding: 1.75em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 2px 4px 0 rgba(69, 87, 121, 0.144), 0 3px 10px 0 rgba(69, 87, 121, 0.144);
+}
+
+.login>form>img {
+    width: 6em;
+    height: 6em;
+    margin-bottom: 2em;
+}
+
+.login a {
+    color: var(--main-color);
+    font-size: 12px;
+    text-align: center;
+    font-weight: 500;
+}
+
+.login a {
+    padding-top: 1em;
+    text-decoration: none;
+}
+
+.login>form>.input {
+    width: 95%;
+    border: 1px solid #aaa;
+    border-radius: .45em;
+}
+
+.login>form>.input>input:first-child {
+    border-bottom: 1px solid #aaa;
+    border-radius: .45em .45em 0 0 !important;
+}
+
+.login>form>.input>input {
+    padding: .85em .85em;
+    border: none;
+    font-size: .75em;
+    width: 100%;
+    border-radius: .45em;
+
+
+}
+
+.login>form>.input>input:focus {
+    outline: none;
+}
+
+.login>form>button {
+    padding: .45em 2em;
+    font-size: small;
+    margin-top: 1em;
+    border: none;
+    color: white;
+    background-color: var(--main-color);
+    font-weight: 600;
+    border-radius: .25em;
+}
+
+.login>form>p {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: start;
+    padding: .45em 0;
+    width: 100%;
+}
+
+.login>form>input {
+    padding: .85em .85em;
+    border: none;
+    font-size: .75em;
+    width: 100%;
+    border-radius: .45em;
+    border: 1px solid #aaa;
+}
+
+.login>form>input:focus {
+    outline: none;
+}

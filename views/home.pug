@@ -1,110 +1,22 @@
 doctype html
 html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-        link(rel="stylesheet", href="css/style.css")
-        link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css",integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor", crossorigin="anonymous")
-        
+    include ./block/head.pug        
     body 
-        .header.container-fluid
-            .container.px-0
-                .navbar.row.align-items-center
-                    .left.col-1
-                        a#logo Fotobook
-                    .nav-main.d-flex.w-75.col-10.justify-content-between.px-0
-                        form.w-50(action="", method="post") 
-                            input.h-100.w-100.px-2(type='text',placeholder="search photo/album")
-                        .user.d-flex.align-items-center
-                            img(src="img/icon.jpg", alt="", srcset="")
-                            a.ms-2(href="")  Quoc Binh
-                    
-                    .right.col-1.d-xl-block
-                        a(href="") Logout 
+        include ./block/post.pug        
+        include ./block/header.pug
+        include ./block/menu.pug
+        +header()
         .content.container-fluid
             .container.px-0
                 .navbar.row
-                    .left.col-1
-                        ul.ps-0 
-                            li 
-                                a(href="#") Feeds 
-                            li 
-                                a(href="#") My Photos 
-                            li 
-                                a(href="#") My Albums
+                    +menu(menu)
+                            
                     .content-main.col-10.py-4
                         .group-button
                             button Photo 
                             button.isActive Album
-                        .post                            
-                            .image-post
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                            .content-post
-                                .user-post
-                                    img(src="img/icon.jpg", alt="", srcset="")
-                                    a.ms-2(href="")  Quoc Binh
-                                a.post-link Nam tempor posuere baucibus
-                                p aliqam dictum nec massa ac consequat. Etiam dignissim tincidunt tellis sed vassibuim sed vitae vestibuium ourus.
-                        .post
-                            .image-post
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                            .content-post
-                                .user-post
-                                    img(src="img/icon.jpg", alt="", srcset="")
-                                    a.ms-2(href="")  Quoc Binh
-                                a.post-link Nam tempor posuere baucibus
-                                p aliqam dictum nec massa ac consequat. Etiam dignissim tincidunt tellis sed vassibuim sed vitae vestibuium ourus.
-
-                        .post
-                            .image-post
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                            .content-post
-                                .user-post
-                                    img(src="img/icon.jpg", alt="", srcset="")
-                                    a.ms-2(href="")  Quoc Binh
-                                a.post-link Nam tempor posuere baucibus
-                                p aliqam dictum nec massa ac consequat. Etiam dignissim tincidunt tellis sed vassibuim sed vitae vestibuium ourus.
-                        .post
-                            .image-post
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                            .content-post
-                                .user-post
-                                    img(src="img/icon.jpg", alt="", srcset="")
-                                    a.ms-2(href="")  Quoc Binh
-                                a.post-link Nam tempor posuere baucibus
-                                p aliqam dictum nec massa ac consequat. Etiam dignissim tincidunt tellis sed vassibuim sed vitae vestibuium ourus.
-                        .post
-                            .image-post
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                            .content-post
-                                .user-post
-                                    img(src="img/icon.jpg", alt="", srcset="")
-                                    a.ms-2(href="")  Quoc Binh
-                                a.post-link Nam tempor posuere baucibus
-                                p aliqam dictum nec massa ac consequat. Etiam dignissim tincidunt tellis sed vassibuim sed vitae vestibuium ourus.                                
-                        .post
-                            .image-post
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                                img(src="img/icon.jpg", alt="", srcset="" )
-                            .content-post
-                                .user-post
-                                    img(src="img/icon.jpg", alt="", srcset="")
-                                    a.ms-2(href="")  Quoc Binh
-                                a.post-link Nam tempor posuere baucibus
-                                p aliqam dictum nec massa ac consequat. Etiam dignissim tincidunt tellis sed vassibuim sed vitae vestibuium ourus.
+                        for p in posts= posts            
+                            +post(p.name,p.post_link,p.summary_content,p.number_like,p.date_post)
                         .pagination 
                             ul 
                                 li
@@ -124,3 +36,4 @@ html(lang="en")
         
 
         script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js",integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2",crossorigin="anonymous") 
+        script(src="https://kit.fontawesome.com/93524964e8.js" crossorigin="anonymous")

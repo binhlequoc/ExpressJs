@@ -4,11 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 const controllerFolder = __dirname + '/controllers/';
-
-
 const controllers = [];
-
-
 ctrFiles = fs.readdirSync(controllerFolder);
 ctrFiles.forEach(file => {
     if (path.extname(file) == ".js") {
@@ -18,11 +14,14 @@ ctrFiles.forEach(file => {
 
 });
 
-
-
 controllers.forEach((controller) => {
     controller(router);
 });
 
 
-module.exports = router;
+module.exports = (app) => {
+    controllers.forEach((controller) => {
+        controller(app);
+    });
+}
+// module.exports = router;
