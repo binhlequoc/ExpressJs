@@ -33,8 +33,10 @@ module.exports = (app) => {
             }
 
             const errors = validationResult(req);
-            if (!errors.isEmpty())
-                res.redirect("/signup");
+            if (!errors.isEmpty()) {
+                res.render("login", errors)
+
+            }
             else res.redirect("/home");
 
 
