@@ -4,4 +4,8 @@ module.exports = (app, db) => {
         res.render("myphotos", db());
     });
 
+    app.get("/addphoto", (req, res) => {
+        res.render("addphoto.pug", db());
+    })
+
 }

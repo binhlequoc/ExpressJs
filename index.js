@@ -11,7 +11,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 routes(app);
 
+const mongoose = require('mongoose');
+
+mongoose.Promise = global.Promise;
+const uri = "mongodb+srv://binhlq:YMGn5uJKj2PPgUNN@cluster0.zp6i9.mongodb.net/Fotobook?retryWrites=true&w=majority"
+// Connect MongoDB at default port 27017.
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+
+}, (err) => {
+    if (!err) {
+        console.log('MongoDB Connection Succeeded.')
+    } else {
+        console.log('Error in DB connection: ' + err)
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+
 });
+
+
 

@@ -1,0 +1,44 @@
+doctype html
+html(lang="en")
+    include ./block/head.pug        
+    body 
+        include ./block/post.pug        
+        include ./block/header.pug
+        include ./block/menu.pug
+        +header()
+        .content.container-fluid
+            .container.px-0
+                .navbar.row
+                    +menu(menu)
+                            
+                    .content-main.col-10.py-4
+                        form.add-new
+                            .new-photo-text
+                                h3 New Album
+                            .new-photo-content
+                                .npc-left
+                                    .npc-title  
+                                        label(for="title") Title
+                                        input(type="text",placeholder="Photo Title", id="title")
+                                    .npc-sharing
+                                        label Sharing mode
+                                        select(name="sharing-mode")
+                                            option(value="public") Public
+                                            option(value="private") Private
+                                .npc-right
+                                    .npc-desc
+                                        label(for="desc") Description
+                                        textarea(name="", cols="30", rows="10",type="text", id="desc")
+                            .new-photo-add
+                                label(for="add-image")
+                                    i.fa-solid.fa-plus
+                                input(type="file",src="img_submit.gif" id="add-image")
+                            .new-photo-submit
+                                button(type="submit") Save
+  
+                    .right.col-1
+                        
+        
+        include ./block/popup.pug
+        include ./block/script.pug
+        

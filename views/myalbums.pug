@@ -2,7 +2,7 @@ doctype html
 html(lang="en")
     include ./block/head.pug        
     body 
-        include ./block/post.pug        
+        include ./block/photo.pug        
         include ./block/header.pug
         include ./block/menu.pug
         +header()
@@ -11,10 +11,14 @@ html(lang="en")
                 .navbar.row
                     +menu(menu)
                             
-                    .content-main.col-10.py-4
-                        
-                        for p in posts= posts            
-                            +post(p.name,p.post_link,p.summary_content,p.number_like,p.date_post)
+                    .content-main.col-10
+                        .btn-add-photo
+                            a(href="/addalbum")
+                                button Add New Album 
+                            
+                        .photos
+                            for p in posts= posts            
+                                +photo(p.name,p.post_link,p.summary_content,p.number_like,p.date_post)
                         include ./block/pagination.pug
                     .right.col-1
                         

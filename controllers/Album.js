@@ -3,5 +3,7 @@ module.exports = (app, db) => {
 
         res.render("myalbums", db());
     });
-
+    app.get("/addalbum", (req, res) => {
+        res.render("addalbum.pug", db());
+    })
 }
