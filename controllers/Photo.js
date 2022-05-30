@@ -1,7 +1,11 @@
-module.exports = (app) => {
-    app.get("/photo", (req, res) => {
+module.exports = (app, db) => {
+    app.get("/myphotos", (req, res) => {
 
-        res.render("photo");
+        res.render("myphotos", db());
     });
+
+    app.get("/addphoto", (req, res) => {
+        res.render("addphoto.pug", db());
+    })
 
 }

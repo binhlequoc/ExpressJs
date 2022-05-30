@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require("path");
 const express = require("express");
 const router = express.Router();
-
+const db = require("./database/FakeDatabase");
 const controllerFolder = __dirname + '/controllers/';
 const controllers = [];
 ctrFiles = fs.readdirSync(controllerFolder);
@@ -21,7 +21,7 @@ controllers.forEach((controller) => {
 
 module.exports = (app) => {
     controllers.forEach((controller) => {
-        controller(app);
+        controller(app, db);
+
     });
 }
-// module.exports = router;
