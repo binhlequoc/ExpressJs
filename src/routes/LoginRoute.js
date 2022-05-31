@@ -8,21 +8,21 @@ const validate = [
     body('passwordConfirm').isLength({ max: 64 }),
 ];
 
-module.exports = (app) => {
+module.exports = (app, db, viewsPath) => {
 
     app.route("/signin")
         .get((req, res) => {
 
-            res.render("login", { message: true });
+            res.render(viewsPath + "login", { message: true });
         })
         .post((req, res) => {
 
-            res.render("login", { message: true });
+            res.render(viewsPath + "login", { message: true });
         });
     app.route("/signup")
         .get((req, res) => {
 
-            res.render("login", { message: false });
+            res.render(viewsPath + "login", { message: false });
         })
         .post(validate, (req, res) => {
             user = {
@@ -40,6 +40,6 @@ module.exports = (app) => {
             else res.redirect("/home");
 
 
-            res.render("login", { message: false });
+            res.render(viewsPath + "login", { message: false });
         });
 }

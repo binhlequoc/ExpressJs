@@ -15,8 +15,9 @@ html(lang="en")
                         .group-button
                             button Photo 
                             button.isActive Album
-                        for p in posts= posts            
-                            +post(p.name,p.post_link,p.summary_content,p.number_like,p.date_post)
+                        .posts
+                            for p in posts= posts            
+                                +post(p.name,p.post_link,p.summary_content,p.number_like,p.date_post)
                         include ./block/pagination.pug
                     .right.col-1
                         
