@@ -1,4 +1,4 @@
-module.exports = (app, db) => {
+module.exports = (app, db, viewsPath) => {
     app.get("/home", (req, res) => {
 
         const { MongoClient, ServerApiVersion, Collection } = require('mongodb');
@@ -12,7 +12,7 @@ module.exports = (app, db) => {
             client.close();
         });
 
-        res.render('home', db());
+        res.render(viewsPath + 'home', db());
     });
 
 }

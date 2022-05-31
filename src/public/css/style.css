@@ -89,11 +89,9 @@ p {
 
 .content-main {
     background-color: white;
-    display: flex;
-    flex-wrap: wrap;
     padding: auto;
-    justify-content: center;
     min-height: 800px;
+    min-width: 380px;
 }
 
 .group-button {
@@ -122,12 +120,24 @@ button.isActive {
     color: white;
 }
 
+.posts {
+
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 4%;
+    min-width: 170px;
+
+}
+
+
+
 .post {
     padding: .75em;
     display: flex;
     position: relative;
-    width: 30em;
-    height: 14em;
+    flex-wrap: wrap;
+    width: 46%;
+    min-width: 300px;
     margin: .45em;
     justify-content: space-between;
     box-shadow: 0 2px 4px 0 rgba(90, 90, 90, 0.144), 0 3px 10px 0 rgba(90, 90, 90, 0.144);
@@ -136,27 +146,30 @@ button.isActive {
 .image-post {
 
     position: relative;
-    width: 15em;
+    width: 12em;
+    height: 12em;
 }
 
 
 
 .image-post>img {
 
-    width: 12em;
-    height: 12em;
+    width: 90%;
+    height: 90%;
     object-fit: cover;
-    position: absolute;
     border: 1px solid white;
+
 }
 
 .image-post>img:nth-child(1) {
     z-index: 100;
+    position: absolute;
 }
 
 .image-post>img:nth-child(2) {
     transform: rotate(3deg);
     z-index: 99;
+    position: absolute;
 }
 
 .image-post>img:nth-child(3) {
@@ -231,7 +244,7 @@ button.isActive {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 1.5em;
+    margin-top: 20%;
 
 }
 
@@ -380,11 +393,11 @@ a.isActive {
 
 .photos {
     width: auto;
-    margin: 0 auto;
+    margin-left: 1.5%;
     display: flex;
     flex-wrap: wrap;
 
-    align-content: space-between;
+
 }
 
 .photo {
