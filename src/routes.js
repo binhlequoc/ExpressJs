@@ -3,6 +3,7 @@ const path = require("path");
 const express = require("express");
 const router = express.Router();
 const db = require("./database/FakeDatabase");
+const { viewsPath } = require("./config/Path.js")
 const routeFolder = __dirname + '/routes/';
 const routes = [];
 ctrFiles = fs.readdirSync(routeFolder);
@@ -23,12 +24,12 @@ routes.forEach((route) => {
 
 });
 
-const viewsPath = "../src/views/";
+
 
 module.exports = (app) => {
     routes.forEach((route) => {
         try {
-            route(app, db, viewsPath);
+            route(app, db);
         }
         catch (err) {
             console.log(err);
@@ -37,7 +38,7 @@ module.exports = (app) => {
 
     });
     app.get("*", (req, res) => {
-        res.send("404 deo tim thay");
+        res.render(viewsPath + "error/pagenotfound.pug");
     })
 
 }

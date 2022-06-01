@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+    include ../block/head.pug        
+    body        
+        include ../block/header.pug        
+        +header()
+        .content.container-fluid
+            .container.px-0
+                .navbar.row
+                    .left.col-1
+                            
+                    .content-main.col-10.py-4
+                        
+                        .error
+                            img(src="img/404.jpg")
+  
+                    .right.col-1
+                        
+        
+        include ../block/popup.pug
+        include ../block/script.pug
+        

@@ -1,7 +1,9 @@
 const { model } = require("mongoose");
-const photoCtr = require("../controllers/PhotoController.js")
+const photoCtr = require("../controllers/PhotoController.js");
+const uploadFile = require("../middleware/UploadFile.js");
+const { viewsPath } = require("../config/Path.js");
 
-module.exports = (app, db, viewsPath) => {
+module.exports = (app, db) => {
     app.get("/myphotos", (req, res) => {
 
         res.render(viewsPath + "myphotos", db());
@@ -11,6 +13,6 @@ module.exports = (app, db, viewsPath) => {
         res.render(viewsPath + "addphoto.pug", db());
     })
 
-    app.post("/addphoto", photoCtr.create)
+    app.post("/addphoto", uploadFile.single("file"), photoCtr.create);
 
 }
