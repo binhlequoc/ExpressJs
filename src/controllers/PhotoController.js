@@ -7,21 +7,21 @@ module.exports = {
         if (!req.body.title) {
             res.redirect("/addphoto");
         }
-        if (!req.body.file) {
+        if (!req.file) {
             res.redirect("/addphoto");
         }
 
 
         try {
-            const photo = await new PhotoModel({
+            const photo = new PhotoModel({
                 title: req.body.title,
                 description: req.body.desc,
-                image: req.body.file.buffer,
+                image: String(req.file.buffer),
                 isPublic: req.body.sharingMode == false,
 
             });
             photo.save();
-            return res.json(photo);
+            res.render("")
         }
         catch (err) {
             console.log(err);

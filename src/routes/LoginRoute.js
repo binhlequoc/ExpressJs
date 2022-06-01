@@ -1,5 +1,5 @@
 const { body, validationResult } = require('express-validator');
-
+const { viewsPath } = require("../config/Path.js");
 const validate = [
     body('firstName').isLength({ min: 25 }),
     body('lastName').isLength({ min: 25 }),
@@ -8,7 +8,7 @@ const validate = [
     body('passwordConfirm').isLength({ max: 64 }),
 ];
 
-module.exports = (app, db, viewsPath) => {
+module.exports = (app, db) => {
 
     app.route("/signin")
         .get((req, res) => {

@@ -617,3 +617,8 @@ form.add-new {
 
     background-color: rgb(51, 160, 65);
 }
+
+
+.error>img {
+    width: 100%;
+}

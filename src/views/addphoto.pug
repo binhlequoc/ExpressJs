@@ -12,7 +12,7 @@ html(lang="en")
                     +menu(menu)
                             
                     .content-main.col-10.py-4
-                        form.add-new(method="POST",action="/addphoto")
+                        form.add-new(method="POST",action="/addphoto",enctype="multipart/form-data")
                             .new-photo-text
                                 h3 New Photo
                             .new-photo-content
