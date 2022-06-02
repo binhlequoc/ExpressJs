@@ -1,18 +1,11 @@
-const { model } = require("mongoose");
 const photoCtr = require("../controllers/PhotoController.js");
 const uploadFile = require("../middleware/UploadFile.js");
-const { viewsPath } = require("../config/Path.js");
+const express = require("express");
 
-module.exports = (app, db) => {
-    app.get("/myphotos", (req, res) => {
-
-        res.render(viewsPath + "myphotos", db());
-    });
-
-    app.get("/addphoto", (req, res) => {
-        res.render(viewsPath + "addphoto.pug", db());
-    })
-
-    app.post("/addphoto", uploadFile.single("file"), photoCtr.create);
-
-}
+const router = express.Router();
+router.get("/", photoCtr.getPhotos);
+router.post("/", uploadFile.single("file"), photoCtr.createPhoto);
+router.get("/new", photoCtr.getAddPhotos);
+router.put("/:id", photoCtr.updatePhoto)
+router.delete("/:id", photoCtr.delete);
+module.exports = router;

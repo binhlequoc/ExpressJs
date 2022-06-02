@@ -3,13 +3,13 @@ mixin header(authorize,src,name)
         .container.px-0
             .navbar.row.align-items-center
                 .left.col-1
-                    a#logo(href="/home") Fotobook
+                    a#logo(href="/feeds") Fotobook
                 .nav-main.d-flex.w-75.col-10.justify-content-between.px-0
                     form.w-50(action="", method="post") 
                         input.h-100.w-100.px-2(type='text',placeholder="search photo/album")
                     .user.d-flex.align-items-center
                         if authorize
-                            img(src="img/icon.jpg", alt="", srcset="")
+                            img(src="/img/icon.jpg", alt="", srcset="")
                             a.ms-2(href="")  Quoc Binh
                         
                         
@@ -18,4 +18,4 @@ mixin header(authorize,src,name)
                     if authorize
                         a(href="") Logout 
                     else
-                        a(href="/signin") Login 
+                        a(href="/auth/signin") Login 

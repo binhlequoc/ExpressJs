@@ -17,6 +17,6 @@ clsPopup.addEventListener("click", removePopup);
 
 const addImage = document.querySelector(".new-photo-add>input");
 addImage.addEventListener("change", () => {
-    console.log(addImage.files);
+    (addImage.files);
 })
 // addImage.removeChild(addImage.firstElementChild);

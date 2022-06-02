@@ -1,36 +1,28 @@
-const PhotoModel = require("../model/PhotoModel")
+const PhotoModel = require("../model/PhotoModel");
+const fs = require('fs');
+const { viewsPath } = require("../config/Path.js");
 module.exports = {
-    get: (req, res) => {
+    getPhotos: async (req, res) => {
+        const photos = await PhotoModel.find();
+        for (const p of photos) {
+            p.image = new Buffer(p.image).toString("base64");
 
+        }
+
+        res.render(viewsPath + "photos", { photos });
     },
-    create: async (req, res) => {
-        if (!req.body.title) {
-            res.redirect("/addphoto");
-        }
-        if (!req.file) {
-            res.redirect("/addphoto");
-        }
+    getAddPhotos: async (req, res) => {
 
 
-        try {
-            const photo = new PhotoModel({
-                title: req.body.title,
-                description: req.body.desc,
-                image: String(req.file.buffer),
-                isPublic: req.body.sharingMode == false,
+        res.render(viewsPath + "addphoto");
+    },
+    createPhoto: async (req, res) => {
 
-            });
-            photo.save();
-            res.render("")
-        }
-        catch (err) {
-            console.log(err);
-        }
     },
     delete: (req, res) => {
 
     },
-    update: (req, res) => {
+    updatePhoto: (req, res) => {
 
     }
 

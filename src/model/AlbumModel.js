@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const albumSchema = new mongoose.Schema({
     title: {
@@ -22,4 +22,4 @@ const albumSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-export const albumModel = mongoose.model("albums", albumSchema);
+module.exports = mongoose.model("albums", albumSchema);

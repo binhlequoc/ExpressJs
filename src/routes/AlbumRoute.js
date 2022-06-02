@@ -1,11 +1,10 @@
-const { viewsPath } = require("../config/Path.js");
-module.exports = (app, db) => {
-    app.get("/myalbums", (req, res) => {
+const albumCtr = require("../controllers/AlbumController.js");
+const uploadFile = require("../middleware/UploadFile.js");
+const express = require("express");
 
-        res.render(viewsPath + "myalbums", db());
-    });
-    app.get("/addalbum", (req, res) => {
-
-        res.render(viewsPath + "addalbum.pug", db());
-    })
-}
+const router = express.Router();
+router.get("/", albumCtr.getAlbums);
+router.post("/", uploadFile.single("file"), albumCtr.createAlbum);
+router.put("/:id", albumCtr.updateAlbum)
+router.delete("/:id", albumCtr.deleteAlbum);
+module.exports = router;

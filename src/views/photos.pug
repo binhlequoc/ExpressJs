@@ -9,16 +9,16 @@ html(lang="en")
         .content.container-fluid
             .container.px-0
                 .navbar.row
-                    +menu(menu)
+                    +menu()
                             
                     .content-main.col-10
                         .btn-add-photo
-                            a(href="/addphoto")
+                            a(href="photos/new")
                                 button Add New Photo 
                             
                         .photos
-                            for p in posts= posts            
-                                +photo(p.name,p.post_link,p.summary_content,p.number_like,p.date_post)
+                            for p in photos= photos
+                                +photo("Binh Le",p.title,p.description,p.image,p.createdAt)
                         include ./block/pagination.pug
                     .right.col-1
                         
