@@ -1,7 +1,7 @@
 mixin photo(name,title,description,image,date_post)
     .photo                            
         .image-photo
-            img(src="data:image/png;base64,"+image, alt="")
+            img(src="data:image/png;base64, "+image, alt="")
             
         .content-photo
             p=title

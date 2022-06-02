@@ -7,6 +7,11 @@ module.exports = {
         const albums = await AlbumModel.find();
         res.render(viewsPath + "albums", { albums });
     },
+    getAddAlbum: async (req, res) => {
+
+
+        res.render(viewsPath + "addalbum");
+    },
     createAlbum: async (req, res) => {
 
     },

@@ -4,6 +4,7 @@ const express = require("express");
 
 const router = express.Router();
 router.get("/", albumCtr.getAlbums);
+router.get("/new", albumCtr.getAddAlbum);
 router.post("/", uploadFile.single("file"), albumCtr.createAlbum);
 router.put("/:id", albumCtr.updateAlbum)
 router.delete("/:id", albumCtr.deleteAlbum);

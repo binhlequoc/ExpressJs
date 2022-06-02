@@ -4,11 +4,6 @@ const { viewsPath } = require("../config/Path.js");
 module.exports = {
     getPhotos: async (req, res) => {
         const photos = await PhotoModel.find();
-        for (const p of photos) {
-            p.image = new Buffer(p.image).toString("base64");
-
-        }
-
         res.render(viewsPath + "photos", { photos });
     },
     getAddPhotos: async (req, res) => {
@@ -18,6 +13,22 @@ module.exports = {
     },
     createPhoto: async (req, res) => {
 
+        try {
+            const photo = new PhotoModel({
+                title: req.body.title,
+                description: req.body.desc,
+                image: req.file.buffer.toString("base64"),
+                isPublic: req.body.sharingMode == false,
+
+            });
+            photo.save();
+            res.render("")
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+        res.render(viewsPath + "addphoto");
     },
     delete: (req, res) => {
 
