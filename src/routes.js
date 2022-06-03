@@ -1,44 +1,15 @@
-const fs = require('fs');
-const path = require("path");
-const express = require("express");
-const router = express.Router();
-const db = require("./database/FakeDatabase");
-const { viewsPath } = require("./config/Path.js")
-const routeFolder = __dirname + '/routes/';
-const routes = [];
-ctrFiles = fs.readdirSync(routeFolder);
-ctrFiles.forEach(file => {
-    if (path.extname(file) == ".js") {
-        routes.push(require("./routes/" + file));
-    }
-
-});
-
-routes.forEach((route) => {
-    try {
-        route(router);
-    }
-    catch (err) {
-        console.log(err);
-    }
-
-});
-
-
-
+const photoRoute = require("./routes/PhotoRoute");
+const albumRoute = require("./routes/AlbumRoute");
+const authRoute = require("./routes/AuthRoute");
+const feedRoute = require("./routes/FeedRoute");
+const errorRoute = require("./routes/ErrorRoute");
 module.exports = (app) => {
-    routes.forEach((route) => {
-        try {
-            route(app, db);
-        }
-        catch (err) {
-            console.log(err);
-        }
+    app.use("/auth", authRoute);
+    app.use("/feeds", feedRoute);
+    app.use("/photos", photoRoute);
+    app.use("/albums", albumRoute);
 
+    app.use("*", errorRoute);
 
-    });
-    app.get("*", (req, res) => {
-        res.render(viewsPath + "error/pagenotfound.pug");
-    })
 
 }

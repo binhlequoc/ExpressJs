@@ -1,22 +1,23 @@
-const PhotoModel = require("../model/PhotoModel")
+const PhotoModel = require("../model/PhotoModel");
+const fs = require('fs');
+const { viewsPath } = require("../config/Path.js");
 module.exports = {
-    get: (req, res) => {
-
+    getPhotos: async (req, res) => {
+        const photos = await PhotoModel.find();
+        res.render(viewsPath + "photos", { photos });
     },
-    create: async (req, res) => {
-        if (!req.body.title) {
-            res.redirect("/addphoto");
-        }
-        if (!req.file) {
-            res.redirect("/addphoto");
-        }
+    getAddPhotos: async (req, res) => {
 
+
+        res.render(viewsPath + "addphoto");
+    },
+    createPhoto: async (req, res) => {
 
         try {
             const photo = new PhotoModel({
                 title: req.body.title,
                 description: req.body.desc,
-                image: String(req.file.buffer),
+                image: req.file.buffer.toString("base64"),
                 isPublic: req.body.sharingMode == false,
 
             });
@@ -26,11 +27,13 @@ module.exports = {
         catch (err) {
             console.log(err);
         }
+
+        res.render(viewsPath + "addphoto");
     },
     delete: (req, res) => {
 
     },
-    update: (req, res) => {
+    updatePhoto: (req, res) => {
 
     }
 

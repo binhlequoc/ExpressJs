@@ -1,18 +1,25 @@
-.content-fluid
-    .login
-        h2 Fotobook Login
-        form(action="/signup", method="post")
-            
-            p First Name
-            input(type="text",name="firstName",placeholder="First Name")
-            p Last Name
-            input(type="text",name="lastName",placeholder="Last Name")
-            p Email
-            input(type="text",name="email",placeholder="Email")
-            p New Password
-            input(type="password", name="newPassword",placeholder="Password")
-            p Password Confirmation
-            input(type="password", name="passwordConfirm",placeholder="Password")
+mixin signup(dataUser,validate)
+    .content-fluid
+        .login
+            h2 Fotobook Login
+            form(action="/auth/signup", method="post")
                 
-            button(type="submit") Signup 
+                p First Name
+                input(type="text",name="firstName",placeholder="First Name", value=dataUser.firstName required)
+                
+                p Last Name
+                input(type="text",name="lastName",placeholder="Last Name",value=dataUser.lastName required)
+                p Email
+                input(type="text",name="email",placeholder="Email", value=dataUser.email required)
+                p New Password
+                input(type="password", name="newPassword",placeholder="Password", value=dataUser.newPassword required)
+                p Password Confirmation
+                input(type="password", name="passwordConfirm",placeholder="Password", value=dataUser.passwordConfirm required)
+                .validate
+                    for v in validate
+                        p(class="validate-text")="* "+v.msg
+                button(type="submit") Signup 
+
+                
+                        
             

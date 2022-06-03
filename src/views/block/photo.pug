@@ -1,10 +1,10 @@
-mixin photo(name,post_link,summary_content,number_like,date_post)
+mixin photo(name,title,description,image,date_post)
     .photo                            
         .image-photo
-            img(src="img/icon.jpg", alt="", srcset="" )
+            img(src="data:image/png;base64, "+image, alt="")
             
         .content-photo
-            p Nam tempor posuere baucibus
+            p=title
              
             <i class="fa-solid fa-pen-to-square"></i>
         .lock
