@@ -8,4 +8,6 @@ html(lang="en",style="background-color: white !important;")
             include ./block/signin.pug
         else 
             include ./block/signup.pug
+            +signup(userData,validate)
+                
 

@@ -622,3 +622,18 @@ form.add-new {
 .error>img {
     width: 100%;
 }
+
+.validate {
+    width: 100%;
+    padding: 4px 0;
+}
+
+.validate-border {
+    border: 1px solid rgb(218, 54, 54) !important;
+}
+
+.validate-text {
+    color: rgb(218, 54, 54) !important;
+    font-size: 12px;
+
+}
