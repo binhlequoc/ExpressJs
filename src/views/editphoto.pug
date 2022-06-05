@@ -19,22 +19,27 @@ html(lang="en")
                                 .npc-left
                                     .npc-title  
                                         label(for="title") Title
-                                        input(type="text",placeholder="Photo Title", id="title", name="title")
+                                        input(type="text",placeholder="Photo Title", id="title", name="title",value=title)
                                     .npc-sharing
                                         label Sharing mode
-                                        select(name="sharingMode")
-                                            option(value=true) Public
-                                            option(value=false) Private
+                                        select(name="sharingMode",value=isPublic)
+                                            if isPublic
+                                                option(value=true,selected) Public
+                                                option(value=false) Private
+                                            else
+                                                option(value=true) Public
+                                                option(value=false,selected) Private
                                 .npc-right
                                     .npc-desc
                                         label(for="desc") Description
-                                        textarea(name="desc", cols="30", rows="10",type="text", id="desc")
+                                        textarea(name="desc", cols="30", rows="10",type="text", id="desc")=description
                             .new-photo-add
                                 label(for="add-image")
                                     i.fa-solid.fa-plus
                                 input(type="file",src="img_submit.gif" id="add-image",name="file")
                             .new-photo-submit
-                                button(type="submit") Save
+                                button(type="submit") Update
+                                button(class="delete") Delete
   
                     .right.col-1
                         

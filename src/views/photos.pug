@@ -18,7 +18,7 @@ html(lang="en")
                             
                         .photos
                             for p in photos= photos
-                                +photo("Binh Le",p.title,p.description,p.image,p.createdAt)
+                                +photo(p._id,p.title,p.description,p.image,p.createdAt)
                         include ./block/pagination.pug
                     .right.col-1
                         

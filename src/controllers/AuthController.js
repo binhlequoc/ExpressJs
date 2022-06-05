@@ -20,16 +20,7 @@ module.exports = {
         res.render(viewsPath + "auth", { message: false, userData: new userData(req, res), validate: [] });
     },
     signin: async (req, res) => {
-        const errors = validationResult(req);
-        if (errors.isEmpty) {
-            const user = await userModel.findOne({ email: req.body.email });
 
-            if (user.comparePassword(req.body.password))
-                console.log("Oker dung r cu");
-            else console.log("sai r cu");
-
-        }
-        res.render(viewsPath + "auth", { message: true, validate: errors.errors });
     },
     signup: async (req, res) => {
         const errors = validationResult(req);
@@ -41,9 +32,8 @@ module.exports = {
                 lastName: req.body.lastName,
                 firstName: req.body.firstName,
 
-            })
-            user.password = user.encryptPassword(req.body.password);
-
+            });
+            user.password = user.encryptPassword(req.body.newPassword);
             user.save();
             res.redirect("/feeds");
         }

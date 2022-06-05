@@ -37,13 +37,13 @@ p {
     color: white;
     text-decoration: none;
     font-size: 24px;
-    font-weight: 800;
+    font-weight: 700;
 }
 
 .navbar a {
     color: white;
     text-decoration: none;
-    font-weight: 800;
+    font-weight: 700;
 
 }
 
@@ -244,7 +244,7 @@ button.isActive {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20%;
+    margin-top: 45%;
 
 }
 
@@ -495,6 +495,10 @@ a.isActive {
     box-shadow: 0 2px 4px 0 rgba(51, 160, 65, 0.4), 0 3px 10px 0 rgba(51, 160, 65, 0.4);
 }
 
+button.delete {
+    background-color: rgb(189, 69, 69) !important;
+    margin-left: 10px;
+}
 
 form.add-new {
     width: 100%;

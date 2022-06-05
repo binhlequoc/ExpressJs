@@ -1,0 +1,18 @@
+mixin feeds_album(p)
+    .post                            
+        .image-post
+            img(src="data:image/png;base64, "+p.image, alt="")
+            img(src="data:image/png;base64, "+p.image, alt="")
+            img(src="data:image/png;base64, "+p.image, alt="")
+        .content-post
+            .user-post
+                img(src="img/icon.jpg", alt="", srcset="")
+                a.ms-2(href="")=name
+            a.post-link(href="#")=p.title
+            p=p.description
+            .more
+                .like
+                    i.fa-solid.fa-heart
+                    p=100
+                .date-post 
+                    p=p.date
