@@ -2,8 +2,8 @@ const authCtr = require("../controllers/AuthController.js");
 const express = require("express");
 const { body, validationResult } = require('express-validator');
 const router = express.Router();
-const userModel = require("../model/UserModel");
-const auth = require("../middleware/Authentication");
+
+const passport = require('../config/Passport');
 const validateSignup = [
     body('firstName')
         .isLength({ max: 25 }).withMessage("Firstname is invalid"),
@@ -24,11 +24,11 @@ const validateSignup = [
 
 
 router.get("/signin", authCtr.getSigninPage);
+
 router.get("/signup", authCtr.getSignupPage);
-router.post("/signin", auth,
-    function (req, res) {
-        res.redirect("/feeds");
-    });
+
+router.post("/signin", passport.authenticate('local', { successRedirect: '/feeds', failureRedirect: '/auth/signin' }), authCtr.signin);
+
 router.post("/signup", validateSignup, authCtr.signup);
 router.get("/logout", (req, res) => req.logout());
 
