@@ -16,7 +16,12 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    image: {
+        type: String,
+        default: "img/usericon.png",
+    },
+
 }, { timestamps: true });
 
 userSchema.methods.encryptPassword = function (password) {
@@ -28,4 +33,4 @@ userSchema.methods.comparePassword = function (password) {
 
 }
 
-module.exports = mongoose.model("users", userSchema);
+module.exports = mongoose.model("User", userSchema);

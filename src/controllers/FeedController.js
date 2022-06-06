@@ -10,13 +10,14 @@ module.exports = {
             res.redirect("?filter=photos");
         }
         if (req.query.filter === "photos") {
-            const photos = await PhotoModel.find({ isPublic: true });
+            const photos = await PhotoModel.find({ isPublic: true }).populate("user");
             photos.forEach((value, index) => {
                 value.date = new Date(value.createdAt).toDateString();
             })
             res.render(viewsPath + "feeds", {
                 button: "photos",
                 photos,
+                user: req.user,
             });
         }
         if (req.query.filter === "albums") {
@@ -27,6 +28,7 @@ module.exports = {
             res.render(viewsPath + "feeds", {
                 button: "albums",
                 albums,
+                user: req.user,
             });
         }
 

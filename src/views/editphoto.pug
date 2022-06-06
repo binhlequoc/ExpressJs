@@ -5,7 +5,7 @@ html(lang="en")
              
         include ./block/header.pug
         include ./block/menu.pug
-        +header()
+        +header(user)
         .content.container-fluid
             .container.px-0
                 .navbar.row
@@ -19,11 +19,11 @@ html(lang="en")
                                 .npc-left
                                     .npc-title  
                                         label(for="title") Title
-                                        input(type="text",placeholder="Photo Title", id="title", name="title",value=title)
+                                        input(type="text",placeholder="Photo Title", id="title", name="title",value=photo.title)
                                     .npc-sharing
                                         label Sharing mode
-                                        select(name="sharingMode",value=isPublic)
-                                            if isPublic
+                                        select(name="sharingMode",value=photo.isPublic)
+                                            if photo.isPublic
                                                 option(value=true,selected) Public
                                                 option(value=false) Private
                                             else
@@ -32,14 +32,15 @@ html(lang="en")
                                 .npc-right
                                     .npc-desc
                                         label(for="desc") Description
-                                        textarea(name="desc", cols="30", rows="10",type="text", id="desc")=description
+                                        textarea(name="desc", cols="30", rows="10",type="text", id="desc")=photo.description
                             .new-photo-add
                                 label(for="add-image")
                                     i.fa-solid.fa-plus
                                 input(type="file",src="img_submit.gif" id="add-image",name="file")
                             .new-photo-submit
                                 button(type="submit") Update
-                                button(class="delete") Delete
+                                form(method="POST",action=`/photos/${photo._id}?_method=DELETE`)
+                                    button(class="delete") Delete
   
                     .right.col-1
                         

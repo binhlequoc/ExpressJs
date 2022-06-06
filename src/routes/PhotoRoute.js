@@ -11,4 +11,5 @@ router.get("/new", photoCtr.getAddPhotos);
 router.get("/:id/edit", photoCtr.getEditPhoto);
 router.put("/:id", photoCtr.updatePhoto)
 router.delete("/:id", photoCtr.delete);
+
 module.exports = router;

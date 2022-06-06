@@ -6,7 +6,7 @@ html(lang="en")
         include ./block/feeds_album.pug
         include ./block/header.pug
         include ./block/menu.pug
-        +header()
+        +header(user)
         .content.container-fluid
             .container.px-0
                 .navbar.row
@@ -20,8 +20,9 @@ html(lang="en")
                                 button(class=button=="albums"?"isActive":"") Albums
                         .posts
                             if button=="photos"
-                                for p in photos            
-                                    +feeds_photo(p)
+                                if photos
+                                    for p in photos            
+                                        +feeds_photo(p)
                         include ./block/pagination.pug
                     .right.col-1
                         

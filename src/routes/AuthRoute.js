@@ -30,7 +30,7 @@ router.get("/signup", authCtr.getSignupPage);
 router.post("/signin", passport.authenticate('local', { successRedirect: '/feeds', failureRedirect: '/auth/signin' }), authCtr.signin);
 
 router.post("/signup", validateSignup, authCtr.signup);
-router.get("/logout", (req, res) => req.logout());
+router.get("/logout", authCtr.logout);
 
 module.exports = router;
 
