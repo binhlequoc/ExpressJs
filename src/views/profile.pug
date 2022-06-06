@@ -1,0 +1,39 @@
+doctype html
+html(lang="en")
+    include ./block/head.pug        
+    body 
+             
+        include ./block/header.pug
+        include ./block/menu.pug
+        +header(user)
+        .content.container-fluid
+            .container.px-0
+                .navbar.row
+                    +menu(menu)
+                            
+                    .content-main.col-10.py-4
+                        .new-photo-text
+                            h3 Edit User Profile
+                        form.user-profile(method="POST",action="/photos",enctype="multipart/form-data")
+                            
+                            .user-image
+                                    img(src=user.image)                                
+                                    label(for="change-image") Change
+                                    input(type="file",src="img_submit.gif" id="change-image",name="file")
+                            .profile-content
+                                label(for="title") First Name
+                                    input(type="text",placeholder="Photo Title", id="title", name="title")
+                                label(for="title") Last Name
+                                    input(type="text",placeholder="Photo Title", id="title", name="title")
+                                label(for="title") Email
+                                    input(type="text",placeholder="Photo Title", id="title", name="title")
+                            
+                            .new-photo-submit
+                                button(type="submit") Save
+  
+                    .right.col-1
+                        
+        
+        include ./block/popup.pug
+        include ./block/script.pug
+        

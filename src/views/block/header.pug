@@ -1,4 +1,4 @@
-mixin header(authorize,src,name)
+mixin header(user)
     .header.container-fluid
         .container.px-0
             .navbar.row.align-items-center
@@ -8,14 +8,14 @@ mixin header(authorize,src,name)
                     form.w-50(action="", method="post") 
                         input.h-100.w-100.px-2(type='text',placeholder="search photo/album")
                     .user.d-flex.align-items-center
-                        if authorize
-                            img(src="/img/icon.jpg", alt="", srcset="")
-                            a.ms-2(href="")  Quoc Binh
+                        if user
+                            img(src=`/${user.image}`, alt="")
+                            a.ms-2(href="/profile")=user.firstName+" "+user.lastName
                         
                         
                         
                 .right.col-1.d-xl-block
-                    if authorize
-                        a(href="") Logout 
+                    if user
+                        a(href="/auth/logout") Logout 
                     else
                         a(href="/auth/signin") Login 

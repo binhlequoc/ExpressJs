@@ -481,7 +481,7 @@ a.isActive {
     align-items: flex-end;
 }
 
-.btn-add-photo button {
+.btn-add-photo button,button.delete {
     color: white;
     background-color: rgb(51, 160, 65);
     font-size: 12px;
@@ -507,17 +507,17 @@ form.add-new {
     padding: 0 12px;
 }
 
-.new-photo-text {
+.new-photo-text ,.new-album-text{
     border-bottom: 2px solid rgb(192, 192, 192);
 }
 
-.new-photo-text h3 {
+.new-photo-text h3 ,.new-album-text h3{
     font-size: 20px;
     font-weight: 600;
     padding: 8px 0;
 }
 
-.new-photo-content {
+.new-photo-content ,.new-album-content{
     padding: 8px 0;
     display: flex;
     justify-content: space-between;
@@ -561,11 +561,13 @@ form.add-new {
     background-color: white;
 }
 
-.new-photo-content label {
+.new-photo-content label ,.new-album-content label{
     display: block;
     padding: 4px 0;
 
 }
+
+
 
 .npc-desc>textarea {
     height: 120px;
@@ -580,13 +582,21 @@ form.add-new {
     outline: none;
 }
 
-.new-photo-add {
+.new-photo-add,.new-album-add {
     padding: 8px 0;
+    
 }
 
-.new-photo-add>label {}
+.new-photo-button>label,.new-album-button>label {}
 
-.new-photo-add>label>i {
+.new-photo-button>label>img{
+    display: none;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.new-photo-button>label>i,.new-album-button>label>i {
     width: 200px;
     height: 200px;
     display: flex;
@@ -600,25 +610,26 @@ form.add-new {
     color: rgb(136, 136, 136)
 }
 
-.new-photo-add>input {
+.new-photo-button>input,.new-album-button>input {
     display: none;
 }
 
-.new-photo-add>button {
+.new-photo-submit>button ,.new-album-submit>button{
     display: block;
 }
 
-.new-photo-submit {
-    padding: 12px 0;
+.new-photo-submit ,.new-album-submit{
+    padding: 12px 12px;
+    display: flex;
 }
 
 
-.new-photo-submit>button {
+.new-photo-submit>button,.new-album-submit>button {
     color: white;
     font-size: 14px;
-    padding: 8px;
+    padding: 8px 12px;
     border: none;
-
+    font-weight: 600;
     background-color: rgb(51, 160, 65);
 }
 
@@ -640,4 +651,48 @@ form.add-new {
     color: rgb(218, 54, 54) !important;
     font-size: 12px;
 
+}
+
+
+/* =============Profile================= */
+.user-profile,.profile-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.profile-content>label{
+    width: 100%;
+}
+.profile-content>label>input{
+    display: inline;
+}
+.user-image{
+    width: 140px;
+    height: 140px;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(90, 90, 90, 0.144), 0 3px 10px 0 rgba(90, 90, 90, 0.144);
+    border-radius: 6px;
+}
+.user-image>label{
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    bottom: 10px;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: rgba(230, 228, 228, 0.6);
+    cursor: pointer;
+    
+}
+
+.user-image>img{
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+}
+.user-image>input{
+    display: none;
 }

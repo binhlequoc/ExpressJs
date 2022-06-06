@@ -2,10 +2,10 @@ doctype html
 html(lang="en")
     include ./block/head.pug        
     body 
-        include ./block/photo.pug        
+        include ./block/album.pug        
         include ./block/header.pug
         include ./block/menu.pug
-        +header()
+        +header(user)
         .content.container-fluid
             .container.px-0
                 .navbar.row
@@ -17,8 +17,8 @@ html(lang="en")
                                 button Add New Album 
                             
                         .photos
-                            for album in albumss= albums            
-                                +photo()
+                            for album in albums= albums            
+                                +album(album)
                         include ./block/pagination.pug
                     .right.col-1
                         

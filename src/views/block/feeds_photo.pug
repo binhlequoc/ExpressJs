@@ -1,13 +1,13 @@
 mixin feeds_photo(p)
     .post                            
         .image-post
-            img(src="data:image/png;base64, "+p.image, alt="")
+            img(src=p.image, alt="")
             //- img(src="data:image/png;base64, "+p.image, alt="")
             //- img(src="data:image/png;base64, "+p.image, alt="")
         .content-post
             .user-post
-                img(src="img/icon.jpg", alt="", srcset="")
-                a.ms-2(href="")=name
+                img(src=p.user.image, alt="", srcset="")
+                a.ms-2(href="")=p.user.firstName+" "+p.user.lastName
             a.post-link(href="#")=p.title
             p=p.description
             .more

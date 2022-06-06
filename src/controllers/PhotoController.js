@@ -5,7 +5,7 @@ const { viewsPath } = require("../config/Path.js");
 module.exports = {
     getPhotos: async (req, res) => {
         const photos = await PhotoModel.find({ user: req.user._id });
-        res.render(viewsPath + "photos", { photos });
+        res.render(viewsPath + "photos", { user: req.user, photos });
     },
     getAddPhotos: async (req, res) => {
 
@@ -13,8 +13,8 @@ module.exports = {
     },
     getEditPhoto: async (req, res) => {
         const photo = await PhotoModel.findOne({ _id: req.params.id });
-        console.log(photo);
-        res.render(viewsPath + "editphoto", photo);
+
+        res.render(viewsPath + "editphoto", { user: req.user, photo });
     },
     createPhoto: async (req, res) => {
 
@@ -22,7 +22,7 @@ module.exports = {
             const photo = new PhotoModel({
                 title: req.body.title,
                 description: req.body.desc,
-                image: req.file.buffer.toString("base64"),
+                image: "data:image/png;base64, " + req.file.buffer.toString("base64"),
                 isPublic: req.body.sharingMode == false,
                 user: req.user._id,
             });
@@ -33,13 +33,29 @@ module.exports = {
             console.log(err);
         }
 
-        res.render(viewsPath + "addphoto");
+        res.render(viewsPath + "addphoto", { user: req.user });
     },
-    delete: (req, res) => {
-
+    delete: async (req, res) => {
+        
+        const photo = await PhotoModel.findByIdAndDelete(req.params.id);
+        res.redirect("/photos");
     },
-    updatePhoto: (req, res) => {
+    updatePhoto: async(req, res) => {
+        const photo = await PhotoModel.findById(req.params.id);
+        const photoUpdate={
+            title: req.body.title,
+            description: req.body.desc,            
+            isPublic: req.body.sharingMode == false,
+            user: req.user._id,
 
+        }
+        console.log(photoUpdate);
+        if(req.file){
+            photoUpdate.image="data:image/png;base64, " + req.file.buffer.toString("base64");
+        }
+        
+        await photo.updateOne({$set:photoUpdate});
+        res.redirect("/photos");
     }
 
 }

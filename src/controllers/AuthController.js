@@ -12,14 +12,14 @@ const userData = function (req, res) {
 
 module.exports = {
 
-    getSigninPage: async (req, res) => {
+    getSigninPage: (req, res) => {
         res.render(viewsPath + "auth", { message: true });
     },
-    getSignupPage: async (req, res) => {
+    getSignupPage: (req, res) => {
 
         res.render(viewsPath + "auth", { message: false, userData: new userData(req, res), validate: [] });
     },
-    signin: async (req, res) => {
+    signin: (req, res) => {
 
     },
     signup: async (req, res) => {
@@ -27,7 +27,7 @@ module.exports = {
 
         if (errors.isEmpty()) {
 
-            const user = new userModel({
+            const user = await new userModel({
                 email: req.body.email,
                 lastName: req.body.lastName,
                 firstName: req.body.firstName,
@@ -42,6 +42,13 @@ module.exports = {
 
 
     },
+    logout: (req, res) => req.logout(
+        req.user, (err) => {
+            if (err)
+                return err;
+            res.redirect("/auth/signin");
+        }
+    ),
 
 
 }
