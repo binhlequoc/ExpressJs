@@ -12,9 +12,9 @@ html(lang="en")
                     +menu(menu)
                             
                     .content-main.col-10.py-4
-                        form.add-new(method="POST",action="/photos",enctype="multipart/form-data")
+                        form.add-new(method="POST",action=`/photos/${photo._id}?_method=PUT`,enctype="multipart/form-data" id="form-edit")
                             .new-photo-text
-                                h3 New Photo
+                                h3 Edit Photo
                             .new-photo-content
                                 .npc-left
                                     .npc-title  
@@ -34,13 +34,18 @@ html(lang="en")
                                         label(for="desc") Description
                                         textarea(name="desc", cols="30", rows="10",type="text", id="desc")=photo.description
                             .new-photo-add
-                                label(for="add-image")
-                                    i.fa-solid.fa-plus
-                                input(type="file",src="img_submit.gif" id="add-image",name="file")
-                            .new-photo-submit
-                                button(type="submit") Update
-                                form(method="POST",action=`/photos/${photo._id}?_method=DELETE`)
-                                    button(class="delete") Delete
+                                .new-photo-button
+                                    label(for="add-image")
+                                        img(src=photo.image, style="display:block!important")
+                                    input(type="file",src="img_submit.gif" id="add-image",name="file")
+                            
+                        form(method="POST",action=`/photos/${photo._id}?_method=DELETE`, id="form-delete")
+                        .new-photo-submit
+                                button(type="submit" form="form-edit") Update
+                                button(class="delete" form="form-delete")
+                                    i(class="fa-solid fa-trash-can")
+                                        span  Delete
+                                        
   
                     .right.col-1
                         

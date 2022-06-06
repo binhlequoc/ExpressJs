@@ -36,12 +36,26 @@ module.exports = {
         res.render(viewsPath + "addphoto", { user: req.user });
     },
     delete: async (req, res) => {
-        return res.send(req.params.id);
-        const photos = await PhotoModel.findByIdAndDelete(req.params.id);
+        
+        const photo = await PhotoModel.findByIdAndDelete(req.params.id);
         res.redirect("/photos");
     },
-    updatePhoto: (req, res) => {
+    updatePhoto: async(req, res) => {
+        const photo = await PhotoModel.findById(req.params.id);
+        const photoUpdate={
+            title: req.body.title,
+            description: req.body.desc,            
+            isPublic: req.body.sharingMode == false,
+            user: req.user._id,
 
+        }
+        console.log(photoUpdate);
+        if(req.file){
+            photoUpdate.image="data:image/png;base64, " + req.file.buffer.toString("base64");
+        }
+        
+        await photo.updateOne({$set:photoUpdate});
+        res.redirect("/photos");
     }
 
 }

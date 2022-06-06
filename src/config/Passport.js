@@ -10,7 +10,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser(function (id, done) {
 
-    userModel.findById(id).then(function (user) {
+    userModel.findById(id).select("-password").then(function (user) {
         done(null, user);
     }).catch(function (err) {
         console.log(err);
@@ -35,6 +35,8 @@ passport.use(new LocalStrategy({
 
                     return done(null, false, { message: 'Incorrect email and password' });
                 }
+                
+                
                 return done(null, user);
             })
         }).catch(function (err) {

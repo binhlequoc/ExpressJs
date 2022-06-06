@@ -1,14 +1,14 @@
-mixin photo(p)
+mixin album(alb)
     .photo                            
         .image-photo
-            img(src=p.image, alt="")
+            img(src=alb.image, alt="")
             
         .content-photo
-            p=p.title
+            p=alb.title
              
-            a(href="photos/"+p.id+"/edit")
+            a(href="photos/"+alb.id+"/edit")
                 <i class="fa-solid fa-pen-to-square"></i>
-        if !p.isPublic
+        if !alb.isPublic
             .lock
                 <i class="fa-solid fa-lock"></i>
         

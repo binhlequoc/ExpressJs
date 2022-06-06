@@ -25,7 +25,7 @@ app.use(passport.session());
 
 routes(app);
 
-const mongoose = require('mongoose');
+
 
 mongoose.Promise = global.Promise;
 const uri = "mongodb+srv://binhlq:YMGn5uJKj2PPgUNN@cluster0.zp6i9.mongodb.net/Fotobook?retryWrites=true&w=majority"

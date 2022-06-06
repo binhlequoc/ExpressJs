@@ -13,7 +13,7 @@ module.exports = {
         res.render(viewsPath + "addalbum", { user: req.user, });
     },
     createAlbum: async (req, res) => {
-
+        
     },
     deleteAlbum: (req, res) => {
 

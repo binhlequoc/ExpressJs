@@ -10,7 +10,7 @@ mixin header(user)
                     .user.d-flex.align-items-center
                         if user
                             img(src=`/${user.image}`, alt="")
-                            a.ms-2(href="")=user.firstName+" "+user.lastName
+                            a.ms-2(href="/profile")=user.firstName+" "+user.lastName
                         
                         
                         
