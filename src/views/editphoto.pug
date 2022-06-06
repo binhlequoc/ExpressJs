@@ -1,5 +1,5 @@
 doctype html
-html(lang="en")
+html(lang='en')
     include ./block/head.pug        
     body 
              
@@ -12,17 +12,17 @@ html(lang="en")
                     +menu(menu)
                             
                     .content-main.col-10.py-4
-                        form.add-new(method="POST",action=`/photos/${photo._id}?_method=PUT`,enctype="multipart/form-data" id="form-edit")
+                        form.add-new(method='POST',action=`/photos/${photo._id}?_method=PUT`,enctype='multipart/form-data' id='form-edit')
                             .new-photo-text
                                 h3 Edit Photo
                             .new-photo-content
                                 .npc-left
                                     .npc-title  
-                                        label(for="title") Title
-                                        input(type="text",placeholder="Photo Title", id="title", name="title",value=photo.title)
+                                        label(for='title') Title
+                                        input(type='text',placeholder='Photo Title', id='title', name='title',value=photo.title)
                                     .npc-sharing
                                         label Sharing mode
-                                        select(name="sharingMode",value=photo.isPublic)
+                                        select(name='sharingMode',value=photo.isPublic)
                                             if photo.isPublic
                                                 option(value=true,selected) Public
                                                 option(value=false) Private
@@ -31,19 +31,19 @@ html(lang="en")
                                                 option(value=false,selected) Private
                                 .npc-right
                                     .npc-desc
-                                        label(for="desc") Description
-                                        textarea(name="desc", cols="30", rows="10",type="text", id="desc")=photo.description
+                                        label(for='desc') Description
+                                        textarea(name='desc', cols='30', rows='10',type='text', id='desc')=photo.description
                             .new-photo-add
                                 .new-photo-button
-                                    label(for="add-image")
-                                        img(src=photo.image, style="display:block!important")
-                                    input(type="file",src="img_submit.gif" id="add-image",name="file")
+                                    label(for='add-image')
+                                        img(src=photo.image, style='display:block!important')
+                                    input(type='file',src='img_submit.gif' id='add-image',name='file')
                             
-                        form(method="POST",action=`/photos/${photo._id}?_method=DELETE`, id="form-delete")
+                        form(method='POST',action=`/photos/${photo._id}?_method=DELETE`, id='form-delete')
                         .new-photo-submit
-                                button(type="submit" form="form-edit") Update
-                                button(class="delete" form="form-delete")
-                                    i(class="fa-solid fa-trash-can")
+                                button(type='submit' form='form-edit') Update
+                                button(class='delete' form='form-delete')
+                                    i(class='fa-solid fa-trash-can')
                                         span  Delete
                                         
   

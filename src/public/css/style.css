@@ -481,7 +481,8 @@ a.isActive {
     align-items: flex-end;
 }
 
-.btn-add-photo button,button.delete {
+.btn-add-photo button,
+button.delete {
     color: white;
     background-color: rgb(51, 160, 65);
     font-size: 12px;
@@ -507,17 +508,20 @@ form.add-new {
     padding: 0 12px;
 }
 
-.new-photo-text ,.new-album-text{
+.new-photo-text,
+.new-album-text {
     border-bottom: 2px solid rgb(192, 192, 192);
 }
 
-.new-photo-text h3 ,.new-album-text h3{
+.new-photo-text h3,
+.new-album-text h3 {
     font-size: 20px;
     font-weight: 600;
     padding: 8px 0;
 }
 
-.new-photo-content ,.new-album-content{
+.new-photo-content,
+.new-album-content {
     padding: 8px 0;
     display: flex;
     justify-content: space-between;
@@ -561,7 +565,8 @@ form.add-new {
     background-color: white;
 }
 
-.new-photo-content label ,.new-album-content label{
+.new-photo-content label,
+.new-album-content label {
     display: block;
     padding: 4px 0;
 
@@ -582,21 +587,24 @@ form.add-new {
     outline: none;
 }
 
-.new-photo-add,.new-album-add {
+.new-photo-add,
+.new-album-add {
     padding: 8px 0;
-    
+
 }
 
-.new-photo-button>label,.new-album-button>label {}
+.new-photo-button>label,
+.new-album-button>label {}
 
-.new-photo-button>label>img{
+.new-photo-button>label>img {
     display: none;
     width: 200px;
     height: 200px;
     object-fit: cover;
 }
 
-.new-photo-button>label>i,.new-album-button>label>i {
+.new-photo-button>label>i,
+.new-album-button>label>i {
     width: 200px;
     height: 200px;
     display: flex;
@@ -610,21 +618,25 @@ form.add-new {
     color: rgb(136, 136, 136)
 }
 
-.new-photo-button>input,.new-album-button>input {
+.new-photo-button>input,
+.new-album-button>input {
     display: none;
 }
 
-.new-photo-submit>button ,.new-album-submit>button{
+.new-photo-submit>button,
+.new-album-submit>button {
     display: block;
 }
 
-.new-photo-submit ,.new-album-submit{
+.new-photo-submit,
+.new-album-submit {
     padding: 12px 12px;
     display: flex;
 }
 
 
-.new-photo-submit>button,.new-album-submit>button {
+.new-photo-submit>button,
+.new-album-submit>button {
     color: white;
     font-size: 14px;
     padding: 8px 12px;
@@ -655,25 +667,48 @@ form.add-new {
 
 
 /* =============Profile================= */
-.user-profile,.profile-content{
+.user-profile,
+.profile-content {
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    min-width: 400px;
 }
-.profile-content>label{
-    width: 100%;
+
+.profile-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
 }
-.profile-content>label>input{
+
+.profile-input>label {
+    width: 150px;
+    text-align: right;
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.profile-input>input {
+    font-size: 14px;
+    width: 300px;
     display: inline;
+    padding: 8px 8px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid #aaa;
 }
-.user-image{
+
+.user-image {
     width: 140px;
     height: 140px;
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(90, 90, 90, 0.144), 0 3px 10px 0 rgba(90, 90, 90, 0.144);
     border-radius: 6px;
 }
-.user-image>label{
+
+.user-image>label {
     position: absolute;
     width: 100px;
     height: 30px;
@@ -682,17 +717,52 @@ form.add-new {
     left: 50%;
     transform: translateX(-50%);
     font-weight: 600;
+    font-size: 14px;
+    line-height: 26px;
     border-radius: 5px;
     background-color: rgba(230, 228, 228, 0.6);
     cursor: pointer;
-    
+
 }
 
-.user-image>img{
+.user-image>img {
     width: 140px;
     height: 140px;
     object-fit: cover;
 }
-.user-image>input{
+
+.user-image>input {
     display: none;
+
+}
+
+.password-submit,
+.profile-submit {
+    display: flex;
+    flex-direction: row;
+}
+
+.password-submit>.nothing,
+.profile-submit>.nothing {
+    width: 150px;
+    margin-right: 10px;
+}
+
+.password-submit>.bt,
+.profile-submit>.bt {
+    padding-left: 0;
+    display: flex;
+    width: 300px;
+    align-items: flex-start;
+}
+
+.password-submit>.bt>button,
+.profile-submit>.bt>button {
+    margin-top: 10px;
+    color: white;
+    font-size: 14px;
+    padding: 8px 12px;
+    border: none;
+    font-weight: 600;
+    background-color: rgb(51, 160, 65);
 }
