@@ -2,7 +2,7 @@ const profileCtr = require('../controllers/ProfileController.js');
 const uploadFile = require('../middleware/UploadFile.js');
 const { body } = require('express-validator');
 const express = require('express');
-
+const UserModel = require("../model/UserModel");
 const validateProfile = [
     body('firstName')
         .isLength({ max: 25 }).withMessage("Firstname is invalid"),
@@ -33,6 +33,6 @@ const validatePassword = [
 ]
 const router = express.Router();
 router.get('/', profileCtr.getProfilePage);
-router.put('/', validateProfile, uploadFile.single('file'), profileCtr.updateProfile);
+router.put('/', uploadFile.single('file'), validateProfile, profileCtr.updateProfile);
 router.put('/password', validatePassword, profileCtr.updatePassword);
 module.exports = router;

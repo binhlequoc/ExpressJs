@@ -19,21 +19,24 @@ html(lang='en')
                             .user-image
                                     img(src=user.image)                                
                                     label(for='change-image') Change
-                                    input(type='file',src='img_submit.gif' id='change-image',name='file')
+                                    input(type='file',src=user.image id='change-image',name='file')
                             .profile-content
                                 .profile-input
                                     label(for='firstName') First Name
-                                    input(type='text',placeholder='First name', id='firstName', name='firstName', required)
+                                    input(type='text',placeholder='First name', id='firstName', name='firstName',value=user.firstName, required)
                                 .profile-input
                                     label(for='lastName') Last Name
-                                    input(type='text',placeholder='Last name', id='lastName', name='lastName',required)
+                                    input(type='text',placeholder='Last name', id='lastName', name='lastName',value=user.lastName,required)
                                 .profile-input
                                     label(for='email') Email
-                                    input(type='text',placeholder='Email', id='email', name='email',required)
+                                    input(type='text',placeholder='Email', id='email', name='email',value=user.email,required)
                                 if(validate)
                                     .validate
                                         for v in validate
                                             p(class="validate-text")="* "+v.msg
+                                if(message)
+                                    .message 
+                                        p=message
                             .profile-submit
                                 .nothing
                                 .bt
@@ -50,7 +53,13 @@ html(lang='en')
                                 .profile-input
                                     label(for='title') Password Confirm
                                     input(type='password',placeholder='Password confirm', id='passwordConfirm', name='passwordConfirm',required)
-                            
+                                if(validatePassword)
+                                    .validate
+                                        for v in validatePassword
+                                            p(class="validate-text")="* "+v.msg
+                                if(message)
+                                    .message 
+                                        p=message
                             .password-submit
                                 .nothing
                                 .bt

@@ -9,7 +9,7 @@ module.exports = {
     },
     getAddPhotos: async (req, res) => {
 
-        res.render(viewsPath + 'addphoto');
+        res.render(viewsPath + 'addphoto', { user: req.user });
     },
     getEditPhoto: async (req, res) => {
         const photo = await PhotoModel.findOne({ _id: req.params.id });

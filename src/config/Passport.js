@@ -27,7 +27,7 @@ passport.use(new LocalStrategy({
         await userModel.findOne({
             email: username
         }).then(function (user) {
-            console.log(user);
+            
             bcrypt.compare(password, user.password, function (err, result) {
                 if (err) {
                     return done(err);

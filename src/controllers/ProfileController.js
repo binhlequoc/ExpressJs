@@ -7,25 +7,38 @@ module.exports = {
     },
     updateProfile: async (req, res) => {
         const errors = validationResult(req);
-        const user = await UserModel.findById(req.user._id);
-        const userUpdate = {
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
+        let message = "";
+        if (errors.isEmpty()) {
+            const user = await UserModel.findById(req.user._id);
+            const userUpdate = {
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
+                email: req.body.email,
 
+            }
+            if (req.file) {
+                userUpdate.image = 'data:image/png;base64, ' + req.file.buffer.toString('base64');
+            }
+            await user.updateOne({ $set: userUpdate });
+            message = "Update successfully!"
         }
 
-        console.log(errors);
-        if (req.file) {
-            userUpdate.image = 'data:image/png;base64, ' + req.file.buffer.toString('base64');
-        }
-
-        await user.updateOne({ $set: userUpdate });
-        res.render(viewsPath + "profile", { validate: errors.errors });
+        res.render(viewsPath + "profile", { validate: errors.errors, user: req.user, message });
     },
-    updatePassword: (req, res) => {
+    updatePassword: async (req, res) => {
         const errors = validationResult(req);
-        console.log(errors);
-        res.redirect("/profile");
+        let messagePassword = "";
+        console.log(errors)
+        if (errors.isEmpty()) {
+            const user = await UserModel.findById(req.user._id);
+            const userUpdate = {
+                password: user.encryptPassword(req.body.newPassword),
+
+            }
+            await user.updateOne({ $set: userUpdate });
+            messagePassword = "Update password successfully!"
+        }
+
+        res.render(viewsPath + "profile", { validatePassword: errors.errors, user: req.user, messagePassword });
     }
 }

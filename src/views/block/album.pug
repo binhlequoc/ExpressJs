@@ -1,12 +1,14 @@
 mixin album(alb)
-    .photo                            
-        .image-photo
-            img(src=alb.image, alt="")
+    .album                            
+        .image-album
+            img(src=alb.images[0], alt="")
+            img(src=alb.images[1], alt="")
+            img(src=alb.images[2], alt="")
             
-        .content-photo
+        .content-album
             p=alb.title
              
-            a(href="photos/"+alb.id+"/edit")
+            a(href=`/albums/${alb._id}/edit`)
                 <i class="fa-solid fa-pen-to-square"></i>
         if !alb.isPublic
             .lock

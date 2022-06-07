@@ -23,10 +23,20 @@ html(lang='en')
                                 if photos
                                     for p in photos            
                                         +feeds_photo(p)
+                            if button=='albums'
+                                if albums 
+                                    
+                                    for alb in albums 
+                                        +feeds_album(alb)
                         include ./block/pagination.pug
                     .right.col-1
                         
+        if button=='photos'
+            include ./block/popup.pug
+        if button=='albums'
+            include ./block/popupalbum.pug
+            
         
-        include ./block/popup.pug
+            
         include ./block/script.pug
         

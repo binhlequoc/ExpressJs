@@ -1,18 +1,18 @@
-mixin feeds_album(p)
+mixin feeds_album(alb)
     .post                            
         .image-post
-            img(src="data:image/png;base64, "+p.image, alt="")
-            img(src="data:image/png;base64, "+p.image, alt="")
-            img(src="data:image/png;base64, "+p.image, alt="")
+            img(src=alb.images[0])
+            img(src=alb.images[1])
+            img(src=alb.images[2])
         .content-post
             .user-post
-                img(src="img/icon.jpg", alt="", srcset="")
-                a.ms-2(href="")=name
-            a.post-link(href="#")=p.title
-            p=p.description
+                img(src=alb.user.image, alt="", srcset="")
+                a.ms-2(href="")=`${alb.user.firstName} ${alb.user.lastName}`
+            a.post-link(href="#")=alb.title
+            p=alb.description
             .more
                 .like
                     i.fa-solid.fa-heart
                     p=100
                 .date-post 
-                    p=p.date
+                    p=alb.date

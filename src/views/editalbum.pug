@@ -1,0 +1,62 @@
+doctype html
+html(lang='en')
+    include ./block/head.pug        
+    body 
+             
+        include ./block/header.pug
+        include ./block/menu.pug
+        +header(user)
+        .content.container-fluid
+            .container.px-0
+                .navbar.row
+                    +menu(menu)
+                            
+                    .content-main.col-10.py-4
+                        form.add-new(method='POST',action=`/albums/${album._id}?_method=PUT` id='form-edit')
+                            .new-photo-text
+                                h3 Edit Photo
+                            .new-photo-content
+                                .npc-left
+                                    .npc-title  
+                                        label(for='title') Title
+                                        input(type='text',placeholder='Photo Title', id='title', name='title',value=album.title)
+                                    .npc-sharing
+                                        label Sharing mode
+                                        select(name='sharingMode',value=album.isPublic)
+                                            if album.isPublic
+                                                option(value=true,selected) Public
+                                                option(value=false) Private
+                                            else
+                                                option(value=true) Public
+                                                option(value=false,selected) Private
+                                .npc-right
+                                    .npc-desc
+                                        label(for='desc') Description
+                                        textarea(name='description', cols='30', rows='10',type='text', id='desc')=album.description
+                            .new-photo-add
+                                .new-album-button
+                                    each image in album.images
+                                        label
+                                            img(src=image, style='display:block!important')
+                                            .close 
+                                                i(class="fa-solid fa-xmark",onclick='removeImage(this)')
+                                            input(type='hidden',name='images',value=image)
+                                    label(for='add-image')
+                                        i.fa-solid.fa-plus                              
+                                    
+                                    input(type='file',src='img_submit.gif' id='add-image',name='file')
+                            
+                        form(method='POST',action=`/albums/${album._id}?_method=DELETE`, id='form-delete')
+                        .new-photo-submit
+                                button(type='submit' form='form-edit') Update
+                                button(class='delete' form='form-delete')
+                                    i(class='fa-solid fa-trash-can')
+                                        span  Delete
+                                        
+  
+                    .right.col-1
+                        
+        
+        include ./block/popup.pug
+        include ./block/script.pug
+        
