@@ -27,6 +27,7 @@ passport.use(new LocalStrategy({
         await userModel.findOne({
             email: username
         }).then(function (user) {
+            
             bcrypt.compare(password, user.password, function (err, result) {
                 if (err) {
                     return done(err);
@@ -35,11 +36,12 @@ passport.use(new LocalStrategy({
 
                     return done(null, false, { message: 'Incorrect email and password' });
                 }
-                
-                
+
+
                 return done(null, user);
             })
         }).catch(function (err) {
+
             return done(err);
         })
     }

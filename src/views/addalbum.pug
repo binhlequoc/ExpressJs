@@ -12,28 +12,30 @@ html(lang="en")
                     +menu(menu)
                             
                     .content-main.col-10.py-4
-                        form.add-new
+                        form.add-new(method="POST",action="/albums")
                             .new-album-text
                                 h3 New Album
                             .new-album-content
                                 .npc-left
                                     .npc-title  
                                         label(for="title") Title
-                                        input(type="text",placeholder="Photo Title", id="title")
+                                        input(type="text",placeholder="Photo Title", id="title" name="title")
                                     .npc-sharing
                                         label Sharing mode
-                                        select(name="sharing-mode")
-                                            option(value="public") Public
-                                            option(value="private") Private
+                                        select(name="sharingMode")
+                                            option(value=true) Public
+                                            option(value=false) Private
                                 .npc-right
                                     .npc-desc
                                         label(for="desc") Description
-                                        textarea(name="", cols="30", rows="10",type="text", id="desc")
+                                        textarea(cols="30", rows="10",type="text", id="desc" ,name="description")
                             .new-photo-add
                                 .new-album-button
-                                    label(for="add-image")
+                                    label(for="add-album")
                                         i.fa-solid.fa-plus
-                                    input(type="file",src="img_submit.gif" id="add-image")
+                                    
+                                    input(type="file",src="img_submit.gif" id="add-album")
+                                    
                                 .new-album-submit
                                     button(type="submit") Save
   

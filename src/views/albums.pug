@@ -16,7 +16,7 @@ html(lang="en")
                             a(href="/albums/new")
                                 button Add New Album 
                             
-                        .photos
+                        .albums
                             for album in albums= albums            
                                 +album(album)
                         include ./block/pagination.pug

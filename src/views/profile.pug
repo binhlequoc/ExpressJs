@@ -1,5 +1,5 @@
 doctype html
-html(lang="en")
+html(lang='en')
     include ./block/head.pug        
     body 
              
@@ -14,22 +14,56 @@ html(lang="en")
                     .content-main.col-10.py-4
                         .new-photo-text
                             h3 Edit User Profile
-                        form.user-profile(method="POST",action="/photos",enctype="multipart/form-data")
+                        form.user-profile(method='POST',action=`/profile?_method=PUT`,enctype='multipart/form-data')
                             
                             .user-image
                                     img(src=user.image)                                
-                                    label(for="change-image") Change
-                                    input(type="file",src="img_submit.gif" id="change-image",name="file")
+                                    label(for='change-image') Change
+                                    input(type='file',src=user.image id='change-image',name='file')
                             .profile-content
-                                label(for="title") First Name
-                                    input(type="text",placeholder="Photo Title", id="title", name="title")
-                                label(for="title") Last Name
-                                    input(type="text",placeholder="Photo Title", id="title", name="title")
-                                label(for="title") Email
-                                    input(type="text",placeholder="Photo Title", id="title", name="title")
-                            
-                            .new-photo-submit
-                                button(type="submit") Save
+                                .profile-input
+                                    label(for='firstName') First Name
+                                    input(type='text',placeholder='First name', id='firstName', name='firstName',value=user.firstName, required)
+                                .profile-input
+                                    label(for='lastName') Last Name
+                                    input(type='text',placeholder='Last name', id='lastName', name='lastName',value=user.lastName,required)
+                                .profile-input
+                                    label(for='email') Email
+                                    input(type='text',placeholder='Email', id='email', name='email',value=user.email,required)
+                                if(validate)
+                                    .validate
+                                        for v in validate
+                                            p(class="validate-text")="* "+v.msg
+                                if(message)
+                                    .message 
+                                        p=message
+                            .profile-submit
+                                .nothing
+                                .bt
+                                    button(type='submit') Save
+                        
+                        form.user-profile(method='POST', action=`/profile/password?_method=PUT`)
+                            .profile-content
+                                .profile-input
+                                    label(for='title') Current Password
+                                    input(type='password',placeholder='Current password', id='currentPassword', name='currentPassword',required)
+                                .profile-input
+                                    label(for='title') New Password
+                                    input(type='password',placeholder='New password', id='newPassword', name='newPassword',required)
+                                .profile-input
+                                    label(for='title') Password Confirm
+                                    input(type='password',placeholder='Password confirm', id='passwordConfirm', name='passwordConfirm',required)
+                                if(validatePassword)
+                                    .validate
+                                        for v in validatePassword
+                                            p(class="validate-text")="* "+v.msg
+                                if(message)
+                                    .message 
+                                        p=message
+                            .password-submit
+                                .nothing
+                                .bt
+                                    button(type='submit') Save
   
                     .right.col-1
                         

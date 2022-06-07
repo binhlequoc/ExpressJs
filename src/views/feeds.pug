@@ -1,5 +1,5 @@
 doctype html
-html(lang="en")
+html(lang='en')
     include ./block/head.pug        
     body 
         include ./block/feeds_photo.pug
@@ -14,19 +14,29 @@ html(lang="en")
                             
                     .content-main.col-10.py-4
                         .group-button
-                            a(href="?filter=photos")
-                                button(class=button=="photos"?"isActive":"") Photos 
-                            a(href="?filter=albums")
-                                button(class=button=="albums"?"isActive":"") Albums
+                            a(href='?filter=photos')
+                                button(class=button=='photos'?'isActive':'') Photos 
+                            a(href='?filter=albums')
+                                button(class=button=='albums'?'isActive':'') Albums
                         .posts
-                            if button=="photos"
+                            if button=='photos'
                                 if photos
                                     for p in photos            
                                         +feeds_photo(p)
+                            if button=='albums'
+                                if albums 
+                                    
+                                    for alb in albums 
+                                        +feeds_album(alb)
                         include ./block/pagination.pug
                     .right.col-1
                         
+        if button=='photos'
+            include ./block/popup.pug
+        if button=='albums'
+            include ./block/popupalbum.pug
+            
         
-        include ./block/popup.pug
+            
         include ./block/script.pug
         

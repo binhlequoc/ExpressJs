@@ -12,18 +12,18 @@ html(lang='en')
                     +menu(menu)
                             
                     .content-main.col-10.py-4
-                        form.add-new(method='POST',action=`/photos/${photo._id}?_method=PUT`,enctype='multipart/form-data' id='form-edit')
+                        form.add-new(method='POST',action=`/albums/${album._id}?_method=PUT` id='form-edit')
                             .new-photo-text
                                 h3 Edit Photo
                             .new-photo-content
                                 .npc-left
                                     .npc-title  
                                         label(for='title') Title
-                                        input(type='text',placeholder='Photo Title', id='title', name='title',value=photo.title)
+                                        input(type='text',placeholder='Photo Title', id='title', name='title',value=album.title)
                                     .npc-sharing
                                         label Sharing mode
-                                        select(name='sharingMode',value=photo.isPublic)
-                                            if photo.isPublic
+                                        select(name='sharingMode',value=album.isPublic)
+                                            if album.isPublic
                                                 option(value=true,selected) Public
                                                 option(value=false) Private
                                             else
@@ -32,14 +32,21 @@ html(lang='en')
                                 .npc-right
                                     .npc-desc
                                         label(for='desc') Description
-                                        textarea(name='desc', cols='30', rows='10',type='text', id='desc')=photo.description
+                                        textarea(name='description', cols='30', rows='10',type='text', id='desc')=album.description
                             .new-photo-add
-                                .new-photo-button
+                                .new-album-button
+                                    each image in album.images
+                                        label
+                                            img(src=image, style='display:block!important')
+                                            .close 
+                                                i(class="fa-solid fa-xmark",onclick='removeImage(this)')
+                                            input(type='hidden',name='images',value=image)
                                     label(for='add-image')
-                                        img(src=photo.image, style='display:block!important')
+                                        i.fa-solid.fa-plus                              
+                                    
                                     input(type='file',src='img_submit.gif' id='add-image',name='file')
                             
-                        form(method='POST',action=`/photos/${photo._id}?_method=DELETE`, id='form-delete')
+                        form(method='POST',action=`/albums/${album._id}?_method=DELETE`, id='form-delete')
                         .new-photo-submit
                                 button(type='submit' form='form-edit') Update
                                 button(class='delete' form='form-delete')
