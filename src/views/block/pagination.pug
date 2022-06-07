@@ -1,14 +1,14 @@
-.pagination 
-    ul 
-        li
-            a(href="#") Previous
-        li
-            a.isActive(href="#") 1
-        li
-            a(href="#") 2
-        li
-            a(href="#") 3
-        li
-            a(href="#") 4
-        li
-            a(href="#") Next
+mixin pagination(numberPage,type)
+    .pagination 
+        ul 
+            li
+                a(href="#") Previous
+            - var n=1
+            while n<=numberPage            
+                li
+                    if(type)
+                        a(href=`?filter=${type}&page=${n}`)=n++
+                    else
+                        a(href=`?page=${n}`)=n++
+            li
+                a(href="#") Next

@@ -19,7 +19,9 @@ html(lang="en")
                         .photos
                             for p in photos= photos
                                 +photo(p)
+                        
                         include ./block/pagination.pug
+                        +pagination(numberPhoto)
                     .right.col-1
                         
         
