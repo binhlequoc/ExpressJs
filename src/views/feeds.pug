@@ -29,6 +29,10 @@ html(lang='en')
                                     for alb in albums 
                                         +feeds_album(alb)
                         include ./block/pagination.pug
+                        if(numberPhoto)
+                            +pagination(numberPhoto,'photos')
+                        if(numberAlbum)
+                            +pagination(numberAlbum,'albums')
                     .right.col-1
                         
         if button=='photos'
