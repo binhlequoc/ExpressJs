@@ -17,37 +17,46 @@ module.exports = {
             res.redirect("?filter=photos");
         }
         if (filter === "photos") {
-            const photos = await PhotoModel.find({ isPublic: true }).skip(skip).limit(POST_PER_PAGE).populate("user");
+            try {
+                const photos = await PhotoModel.find({ isPublic: true }).skip(skip).limit(POST_PER_PAGE).populate("user");
+                const count = await PhotoModel.count({ isPublic: true });
+                const numberPhoto = Math.ceil(count / POST_PER_PAGE);
+                if (page > numberPhoto) page = numberPhoto;
+                photos.forEach((value, index) => {
 
-            const count = await PhotoModel.count({ isPublic: true });
-            const numberPhoto = Math.ceil(count / POST_PER_PAGE);
-            if (page > numberPhoto) page = numberPhoto;
-            photos.forEach((value, index) => {
+                    value.date = date.format(value.createdAt, "h:mm A DD/MM/YYYY");
+                })
+                res.render(viewsPath + "feeds", {
+                    button: "photos",
+                    photos,
+                    user: req.user,
+                    numberPhoto,
+                    page,
+                });
+            } catch (err) {
 
-                value.date = date.format(value.createdAt, "h:mm A DD/MM/YYYY");
-            })
-            res.render(viewsPath + "feeds", {
-                button: "photos",
-                photos,
-                user: req.user,
-                numberPhoto,
-                page,
-            });
+            }
+
         }
         if (filter === "albums") {
-            const albums = await AlbumModel.find({ isPublic: true }).skip(skip).limit(POST_PER_PAGE).populate("user");
-            const count = await AlbumModel.count({ isPublic: true });
-            const numberAlbum = Math.ceil(count / POST_PER_PAGE);
-            if (page > numberAlbum) page = numberAlbum;
-            albums.forEach((value, index) => {
-                value.date = new Date(value.createdAt).toDateString();
-            })
-            res.render(viewsPath + "feeds", {
-                button: "albums",
-                albums,
-                user: req.user,
-                numberAlbum,
-            });
+            try {
+                const albums = await AlbumModel.find({ isPublic: true }).skip(skip).limit(POST_PER_PAGE).populate("user");
+                const count = await AlbumModel.count({ isPublic: true });
+                const numberAlbum = Math.ceil(count / POST_PER_PAGE);
+                if (page > numberAlbum) page = numberAlbum;
+                albums.forEach((value, index) => {
+                    value.date = new Date(value.createdAt).toDateString();
+                })
+                res.render(viewsPath + "feeds", {
+                    button: "albums",
+                    albums,
+                    user: req.user,
+                    numberAlbum,
+                });
+            } catch (err) {
+
+            }
+
         }
 
     },

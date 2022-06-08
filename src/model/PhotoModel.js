@@ -17,7 +17,7 @@ const photoSchema = new mongoose.Schema({
             validator: function (description) {
                 return description.length <= 300;
             },
-            message: "Title must have maximum 300 characters long!",
+            message: "Description must have maximum 300 characters long!",
         }
     },
     image: {

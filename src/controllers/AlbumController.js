@@ -26,7 +26,7 @@ module.exports = {
     getEditAlbum: async (req, res) => {
         try {
             const album = await AlbumModel.findById(req.params.id);
-            res.render(viewsPath + "editalbum", { user: req.user, album });
+            res.render(viewsPath + "editalbum", { user: req.user, album, validate: req.flash('errorValidate') });
         } catch (err) {
 
         }
@@ -64,12 +64,17 @@ module.exports = {
                 title: req.body.title,
                 description: req.body.description,
                 isPublic: req.body.sharingMode == false,
-                images: req.body.images,
+                images: []
             };
-            await album.updateOne(albumUpdate);
+            if (req.body.images) albumUpdate.images = req.body.images;
+
+            const opts = { runValidators: true };
+            await album.updateOne(albumUpdate, opts);
             res.redirect("/albums");
         } catch (err) {
-
+            let errList = Object.values(err.errors);
+            req.flash('errorValidate', errList.toString());
+            res.redirect(`/albums/${req.params.id}/edit`)
         }
 
     },

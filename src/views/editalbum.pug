@@ -45,7 +45,10 @@ html(lang='en')
                                         i.fa-solid.fa-plus                              
                                     
                                     input(type='file',src='img_submit.gif' id='add-image',name='file')
-                            
+                            .validate
+                                if(validate)
+                                    for v in validate
+                                        p(class="validate-text")="* "+v
                         form(method='POST',action=`/albums/${album._id}?_method=DELETE`, id='form-delete')
                         .new-photo-submit
                                 button(type='submit' form='form-edit') Update

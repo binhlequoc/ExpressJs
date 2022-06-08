@@ -9,18 +9,23 @@ module.exports = {
         const errors = validationResult(req);
         let message = "";
         if (errors.isEmpty()) {
-            const user = await UserModel.findById(req.user._id);
-            const userUpdate = {
-                firstName: req.body.firstName,
-                lastName: req.body.lastName,
-                email: req.body.email,
+            try {
+                const user = await UserModel.findById(req.user._id);
+                const userUpdate = {
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    email: req.body.email,
+
+                }
+                if (req.file) {
+                    userUpdate.image = 'data:image/png;base64, ' + req.file.buffer.toString('base64');
+                }
+                await user.updateOne(userUpdate);
+                message = "Update successfully!"
+            } catch (err) {
 
             }
-            if (req.file) {
-                userUpdate.image = 'data:image/png;base64, ' + req.file.buffer.toString('base64');
-            }
-            await user.updateOne({ $set: userUpdate });
-            message = "Update successfully!"
+
         }
 
         res.render(viewsPath + "profile", { validate: errors.errors, user: req.user, message });
@@ -30,13 +35,18 @@ module.exports = {
         let messagePassword = "";
         console.log(errors)
         if (errors.isEmpty()) {
-            const user = await UserModel.findById(req.user._id);
-            const userUpdate = {
-                password: user.encryptPassword(req.body.newPassword),
+            try {
+                const user = await UserModel.findById(req.user._id);
+                const userUpdate = {
+                    password: user.encryptPassword(req.body.newPassword),
+
+                }
+                await user.updateOne(userUpdate);
+                messagePassword = "Update password successfully!"
+            } catch (err) {
 
             }
-            await user.updateOne({ $set: userUpdate });
-            messagePassword = "Update password successfully!"
+
         }
 
         res.render(viewsPath + "profile", { validatePassword: errors.errors, user: req.user, messagePassword });
