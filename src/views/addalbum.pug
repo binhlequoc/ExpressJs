@@ -5,7 +5,7 @@ html(lang="en")
                 
         include ./block/header.pug
         include ./block/menu.pug
-        +header()
+        +header(user)
         .content.container-fluid
             .container.px-0
                 .navbar.row
@@ -35,7 +35,10 @@ html(lang="en")
                                         i.fa-solid.fa-plus
                                     
                                     input(type="file",src="img_submit.gif" id="add-album")
-                                    
+                            .validate
+                                if(validate)
+                                    for v in validate
+                                        p(class="validate-text")="* "+v
                                 .new-album-submit
                                     button(type="submit") Save
   

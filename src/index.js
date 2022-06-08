@@ -6,6 +6,7 @@ const expressSession = require('express-session');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const passport = require('./config/Passport');
+const flash = require('connect-flash');
 const PORT = process.env.PORT || 4000;
 
 app.set('view engine', 'pug')
@@ -20,6 +21,7 @@ app.use(expressSession({
     resave: true,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
 }));
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 

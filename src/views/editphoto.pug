@@ -38,7 +38,10 @@ html(lang='en')
                                     label(for='add-image')
                                         img(src=photo.image, style='display:block!important')
                                     input(type='file',src='img_submit.gif' id='add-image',name='file')
-                            
+                            .validate
+                                if(validate)
+                                    for v in validate
+                                        p(class="validate-text")="* "+v
                         form(method='POST',action=`/photos/${photo._id}?_method=DELETE`, id='form-delete')
                         .new-photo-submit
                                 button(type='submit' form='form-edit') Update

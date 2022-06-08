@@ -35,7 +35,11 @@ html(lang="en")
                                         i.fa-solid.fa-plus
                                         img
                                     input(type="file",src="img_submit.gif" id="add-image",name="file")
-                            .new-photo-submit
+                            .validate
+                                if(validate)
+                                    for v in validate
+                                        p(class="validate-text")="* "+v
+                            .new-photo-submit                                
                                 button(type="submit") Save
   
                     .right.col-1

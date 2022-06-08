@@ -7,7 +7,7 @@ mixin feeds_photo(p)
         .content-post
             .user-post
                 img(src=p.user.image, alt="", srcset="")
-                a.ms-2(href="")=p.user.firstName+" "+p.user.lastName
+                a.ms-2=p.user.firstName+" "+p.user.lastName
             a.post-link(href="#")=p.title
             p=p.description
             .more

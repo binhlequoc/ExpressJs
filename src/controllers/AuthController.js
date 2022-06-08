@@ -27,14 +27,14 @@ module.exports = {
 
         if (errors.isEmpty()) {
 
-            const user = await new userModel({
+            const user = new userModel({
                 email: req.body.email,
                 lastName: req.body.lastName,
                 firstName: req.body.firstName,
 
             });
             user.password = user.encryptPassword(req.body.newPassword);
-            user.save();
+            await user.save();
             res.redirect("/feeds");
         }
 
