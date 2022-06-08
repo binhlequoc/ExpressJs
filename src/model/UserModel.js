@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique:true,
+        unique: true,
     },
     firstName: {
         type: String,
@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        default: "img/usericon.png",
+        default: "/img/usericon.png",
     },
 
 }, { timestamps: true });

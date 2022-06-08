@@ -3,18 +3,35 @@ const clsPopup = document.querySelector(".popup-top>i");
 const post = document.querySelector(".content-post>a");
 const removePopup = (e) => {
     popup.removeAttribute("id");
+    document.querySelector(".carousel-inner").innerHTML = '';
+
 };
 document.querySelectorAll(".post").forEach((item => {
 
     item.addEventListener("click", () => {
         popup.setAttribute('id', 'isPopup');
         document.querySelector('.popup-top>h3').innerHTML = item.querySelector(".content-post>a").innerHTML;
-        document.querySelector('.popup-content>img').src = item.querySelector(".image-post>img").getAttribute('src');
+        if (document.querySelector('.popup-content>img') != null)
+            document.querySelector('.popup-content>img').src = item.querySelector(".image-post>img").getAttribute('src');
+        if (document.querySelector('.carousel-inner') != null) {
+            item.querySelectorAll(".image-post>img").forEach((img, index) => {
+                caro = document.createElement('div');
+                caro.classList.add('carousel-item');
+                if (index == 0) caro.classList.add('active');
+                i = document.createElement('img');
+                i.classList.add('d-block');
+                i.classList.add('w-100');
+                i.src = img.src;
+                caro.appendChild(i);
+
+                document.querySelector('.carousel-inner').appendChild(caro);
+            })
+        }
         document.querySelector('.popup-content>p').innerHTML = item.querySelector(".content-post>p").innerHTML;
     });
 }));
 
-popup.addEventListener("click", removePopup);
+// popup.addEventListener("click", removePopup);
 clsPopup.addEventListener("click", removePopup);
 
 const addImage = document.querySelector(".new-photo-button>input");

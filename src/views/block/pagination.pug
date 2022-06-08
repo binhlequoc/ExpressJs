@@ -1,14 +1,20 @@
-mixin pagination(numberPage,type)
+mixin pagination(numberPage,page,type)
     .pagination 
         ul 
             li
-                a(href="#") Previous
+                if(type)
+                    a(href=`?filter=${type}&page=${(page-1)<1?1:page-1}`) Previous
+                else
+                    a(href=`?page=${page-1}`) Previous
             - var n=1
             while n<=numberPage            
                 li
                     if(type)
-                        a(href=`?filter=${type}&page=${n}`)=n++
+                        a(href=`?filter=${type}&page=${n}`,class=(page==n)?'isActive':'')=n++
                     else
-                        a(href=`?page=${n}`)=n++
+                        a(href=`?page=${n}`,class=(page==n)?'isActive':'')=n++
             li
-                a(href="#") Next
+                if(type)
+                    a(href=`?filter=${type}&page=${(page+1)>numberPage?1:page+1}`) Next
+                else
+                    a(href=`?page=${(page+1)>numberPage?1:page+1}`) Next

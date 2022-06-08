@@ -10,7 +10,8 @@ module.exports = {
         const filter = req.query.filter;
         let page = Number(req.query.page);
         if (!page) page = 1;
-        let skip = (page - 1) * 20;
+        if (page < 1) page = 1;
+        let skip = (page - 1) * POST_PER_PAGE;
 
         if (!filter) {
             res.redirect("?filter=photos");
@@ -20,6 +21,7 @@ module.exports = {
 
             const count = await PhotoModel.count({ isPublic: true });
             const numberPhoto = Math.ceil(count / POST_PER_PAGE);
+            if (page > numberPhoto) page = numberPhoto;
             photos.forEach((value, index) => {
 
                 value.date = date.format(value.createdAt, "h:mm A DD/MM/YYYY");
@@ -29,12 +31,14 @@ module.exports = {
                 photos,
                 user: req.user,
                 numberPhoto,
+                page,
             });
         }
         if (filter === "albums") {
             const albums = await AlbumModel.find({ isPublic: true }).skip(skip).limit(POST_PER_PAGE).populate("user");
             const count = await AlbumModel.count({ isPublic: true });
             const numberAlbum = Math.ceil(count / POST_PER_PAGE);
+            if (page > numberAlbum) page = numberAlbum;
             albums.forEach((value, index) => {
                 value.date = new Date(value.createdAt).toDateString();
             })

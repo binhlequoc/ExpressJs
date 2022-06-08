@@ -6,11 +6,13 @@ module.exports = {
     getPhotos: async (req, res) => {
         let page = Number(req.query.page);
         if (!page) page = 1;
+        if (page < 1) page = 1;
         let skip = (page - 1) * 20;
         const photos = await PhotoModel.find({ user: req.user._id }).skip(skip).limit(POST_PER_PAGE);
         const count = await PhotoModel.count({ user: req.user._id });
         const numberPhoto = Math.ceil(count / POST_PER_PAGE);
-        res.render(viewsPath + 'photos', { user: req.user, photos, numberPhoto });
+        if (page > numberPhoto) page = numberPhoto;
+        res.render(viewsPath + 'photos', { user: req.user, photos, numberPhoto, page, });
     },
     getAddPhotos: async (req, res) => {
 
@@ -38,7 +40,7 @@ module.exports = {
             console.log(err);
         }
 
-        res.render(viewsPath + 'addphoto', { user: req.user });
+        res.redirect('/photos');
     },
     delete: async (req, res) => {
 

@@ -7,11 +7,13 @@ module.exports = {
     getAlbums: async (req, res) => {
         let page = Number(req.query.page);
         if (!page) page = 1;
+        if (page < 1) page = 1;
         let skip = (page - 1) * 20;
         const albums = await AlbumModel.find({ user: req.user._id }).skip(skip).limit(POST_PER_PAGE);
         const count = await AlbumModel.count({ user: req.user._id });
         const numberAlbum = Math.ceil(count / POST_PER_PAGE);
-        res.render(viewsPath + "albums", { albums, user: req.user, numberAlbum });
+        if (page > numberAlbum) page = numberAlbum;
+        res.render(viewsPath + "albums", { albums, user: req.user, numberAlbum, page });
     },
     getAddAlbum: async (req, res) => {
 
