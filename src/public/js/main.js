@@ -37,12 +37,25 @@ clsPopup.addEventListener("click", removePopup);
 const addImage = document.querySelector(".new-photo-button>input");
 if (addImage) {
     addImage.addEventListener("change", () => {
+
         const label = document.querySelector(".new-photo-button>label");
+
         const i = document.querySelector(".new-photo-button>label>i");
         if (i)
             label.removeChild(i);
         const img = document.querySelector(".new-photo-button>label>img");
         img.style.display = 'block';
+        const closeDiv = document.createElement("div");
+        closeDiv.classList.add("close");
+        const ic = document.createElement("i");
+        ic.classList.add("fa-solid");
+        ic.classList.add("fa-xmark");
+        ic.addEventListener("click", () => {
+
+            removeImage(ic);
+        });
+        closeDiv.appendChild(ic);
+        label.appendChild(closeDiv);
         var fReader = new FileReader();
         fReader.readAsDataURL(addImage.files[0]);
         fReader.onloadend = function (event) {
@@ -93,6 +106,7 @@ addAlbum.addEventListener("change", (event) => {
 
 
 }, false);
+
 
 function removeImage(event) {
     const images = document.querySelector('.new-album-button');

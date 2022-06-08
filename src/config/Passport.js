@@ -23,27 +23,20 @@ passport.use(new LocalStrategy({
     passwordField: "password"
 },
     async function (username, password, done) {
-
-        await userModel.findOne({
-            email: username
-        }).then(function (user) {
-            
+        try {
+            const user = await userModel.findOne({ email: username });
+            if (!user) {
+                return done(null, false, { message: 'Incorrect email and password' });
+            }
             bcrypt.compare(password, user.password, function (err, result) {
-                if (err) {
-                    return done(err);
-                }
-                if (!result) {
-
-                    return done(null, false, { message: 'Incorrect email and password' });
-                }
-
-
+                if (err) return done(err);
+                if (!result) return done(null, false, { message: 'Incorrect email and password' });
                 return done(null, user);
             })
-        }).catch(function (err) {
-
+        } catch (err) {
             return done(err);
-        })
+        }
+
     }
 ));
 

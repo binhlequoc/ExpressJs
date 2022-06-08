@@ -5,7 +5,7 @@ mixin pagination(numberPage,page,type)
                 if(type)
                     a(href=`?filter=${type}&page=${(page-1)<1?1:page-1}`) Previous
                 else
-                    a(href=`?page=${page-1}`) Previous
+                    a(href=`?page=${(page-1)<1?1:page-1}`) Previous
             - var n=1
             while n<=numberPage            
                 li

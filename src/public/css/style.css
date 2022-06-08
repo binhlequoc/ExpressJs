@@ -636,12 +636,14 @@ form.add-new {
 
 }
 
-.new-album-button {
+.new-album-button,
+.new-photo-button {
     display: flex;
     flex-wrap: wrap;
 }
 
-.new-album-button>label>.close {
+.new-album-button>label>.close,
+.new-photo-button>label>.close {
     position: absolute;
     top: 10px;
     right: 10px;
