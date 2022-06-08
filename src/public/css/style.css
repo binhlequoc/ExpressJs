@@ -141,6 +141,7 @@ button.isActive {
     margin: .45em;
     justify-content: space-between;
     box-shadow: 0 2px 4px 0 rgba(90, 90, 90, 0.144), 0 3px 10px 0 rgba(90, 90, 90, 0.144);
+    border-radius: 4px;
 }
 
 .image-post {
@@ -150,7 +151,10 @@ button.isActive {
     height: 12em;
 }
 
-
+.carousel-item>img {
+    height: 500px;
+    object-fit: cover;
+}
 
 .image-post>img {
 

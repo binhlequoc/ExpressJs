@@ -30,9 +30,9 @@ html(lang='en')
                                         +feeds_album(alb)
                         include ./block/pagination.pug
                         if(numberPhoto)
-                            +pagination(numberPhoto,'photos')
+                            +pagination(numberPhoto,page,'photos')
                         if(numberAlbum)
-                            +pagination(numberAlbum,'albums')
+                            +pagination(numberAlbum,page,'albums')
                     .right.col-1
                         
         if button=='photos'
