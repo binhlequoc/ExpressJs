@@ -1,5 +1,3 @@
-const viewsPath = "../src/views/";
-
 module.exports = {
-    viewsPath
+    viewsPath: "../src/views/"
 }

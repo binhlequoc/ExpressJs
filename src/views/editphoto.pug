@@ -45,7 +45,7 @@ html(lang='en')
                         form(method='POST',action=`/photos/${photo._id}?_method=DELETE`, id='form-delete')
                         .new-photo-submit
                                 button(type='submit' form='form-edit') Update
-                                button(class='delete' form='form-delete')
+                                button(class='delete' form='form-delete' type='button' onclick='deletePost()')
                                     i(class='fa-solid fa-trash-can')
                                         span  Delete
                                         

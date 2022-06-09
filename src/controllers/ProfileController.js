@@ -23,7 +23,7 @@ module.exports = {
                 await user.updateOne(userUpdate);
                 message = "Update successfully!"
             } catch (err) {
-
+                return res.status(400).json(err);
             }
 
         }
@@ -44,11 +44,11 @@ module.exports = {
                 await user.updateOne(userUpdate);
                 messagePassword = "Update password successfully!"
             } catch (err) {
-
+                return res.status(400).json(err);
             }
 
         }
 
-        res.render(viewsPath + "profile", { validatePassword: errors.errors, user: req.user, messagePassword });
+        return res.render(viewsPath + "profile", { validatePassword: errors.errors, user: req.user, messagePassword });
     }
 }

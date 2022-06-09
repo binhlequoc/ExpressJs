@@ -113,5 +113,15 @@ function removeImage(event) {
     images.removeChild(event.parentElement.parentElement)
 
 }
+function deletePost() {
+
+    if (window.confirm("Do you want delete!")) {
+        document.querySelector('#form-delete').submit();
+        return true;
+    }
+    window.alert("Cancel delete!");
+    return false;
+}
+
 
 

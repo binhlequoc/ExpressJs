@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+
 require('dotenv').config();
 const routes = require('./routes.js');
 const expressSession = require('express-session');
@@ -7,8 +7,10 @@ const methodOverride = require('method-override');
 const mongoose = require('mongoose');
 const passport = require('./config/Passport');
 const flash = require('connect-flash');
-const PORT = process.env.PORT || 4000;
+const DB_MONGO = require('./config/DB.Config');
 
+const PORT = process.env.PORT || 4000;
+const app = express();
 app.set('view engine', 'pug')
 app.use(express.static(__dirname + '/public'));
 app.use(express.json({ limit: '125mb' }));
@@ -27,21 +29,15 @@ app.use(passport.session());
 
 routes(app);
 
+const connect = function () {
+    mongoose.connection
+        .on('error', console.log)
+        .on('disconnect', connect)
+        .once('open', () => console.log('MongoDB Connection Succeeded.'))
+    return mongoose.connect(DB_MONGO.url, { useNewUrlParser: true, keepAlive: 1 });
+}
 
-
-mongoose.Promise = global.Promise;
-const uri = 'mongodb+srv://binhlq:YMGn5uJKj2PPgUNN@cluster0.zp6i9.mongodb.net/Fotobook?retryWrites=true&w=majority'
-
-mongoose.connect(uri, {
-    useNewUrlParser: true,
-
-}, (err) => {
-    if (!err) {
-        console.log('MongoDB Connection Succeeded.')
-    } else {
-        console.log('Error in DB connection: ' + err)
-    }
-});
+connect();
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
