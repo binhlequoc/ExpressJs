@@ -1,34 +1,32 @@
 const AlbumModel = require("../model/AlbumModel");
-const fs = require('fs');
 const { viewsPath } = require("../config/Path.js");
-const { model } = require("mongoose");
 const POST_PER_PAGE = 20;
 module.exports = {
     getAlbums: async (req, res) => {
         let page = Number(req.query.page);
         if (!page) page = 1;
         if (page < 1) page = 1;
-        let skip = (page - 1) * 20;
+        let skip = (page - 1) * POST_PER_PAGE;
         try {
             const albums = await AlbumModel.find({ user: req.user._id }).skip(skip).limit(POST_PER_PAGE);
             const count = await AlbumModel.count({ user: req.user._id });
             const numberAlbum = Math.ceil(count / POST_PER_PAGE);
             if (page > numberAlbum) page = numberAlbum;
-            res.render(viewsPath + "albums", { albums, user: req.user, numberAlbum, page });
+            return res.render(viewsPath + "albums", { albums, user: req.user, numberAlbum, page });
         } catch (err) {
-
+            return res.status(400).json(err);
         }
 
     },
     getAddAlbum: (req, res) => {
-        res.render(viewsPath + "addalbum", { user: req.user, });
+        return res.render(viewsPath + "addalbum", { user: req.user, });
     },
     getEditAlbum: async (req, res) => {
         try {
             const album = await AlbumModel.findById(req.params.id);
-            res.render(viewsPath + "editalbum", { user: req.user, album, validate: req.flash('errorValidate') });
+            return res.render(viewsPath + "editalbum", { user: req.user, album, validate: req.flash('errorValidate') });
         } catch (err) {
-
+            return res.status(400).json(err);
         }
 
     },
@@ -42,18 +40,18 @@ module.exports = {
                 user: req.user._id,
             });
             await album.save();
-            res.redirect("/albums");
+            return res.redirect("/albums");
         } catch (err) {
-            res.render(viewsPath + "addalbum", { user: req.user, validate: err.errors });
+            return res.render(viewsPath + "addalbum", { user: req.user, validate: err.errors });
         }
 
     },
     deleteAlbum: async (req, res) => {
         try {
             const album = await AlbumModel.findByIdAndDelete(req.params.id);
-            res.redirect('/albums');
+            return res.redirect('/albums');
         } catch (err) {
-
+            return res.status(400).json(err);
         }
 
     },
@@ -70,11 +68,11 @@ module.exports = {
 
             const opts = { runValidators: true };
             await album.updateOne(albumUpdate, opts);
-            res.redirect("/albums");
+            return res.redirect("/albums");
         } catch (err) {
             let errList = Object.values(err.errors);
             req.flash('errorValidate', errList.toString());
-            res.redirect(`/albums/${req.params.id}/edit`)
+            return res.redirect(`/albums/${req.params.id}/edit`)
         }
 
     },

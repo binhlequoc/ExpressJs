@@ -13,11 +13,11 @@ const userData = function (req, res) {
 module.exports = {
 
     getSigninPage: (req, res) => {
-        res.render(viewsPath + "auth", { message: true });
+        return res.render(viewsPath + "auth", { message: true });
     },
     getSignupPage: (req, res) => {
 
-        res.render(viewsPath + "auth", { message: false, userData: new userData(req, res), validate: [] });
+        return res.render(viewsPath + "auth", { message: false, userData: new userData(req, res), validate: [] });
     },
     signin: (req, res) => {
 
@@ -35,18 +35,18 @@ module.exports = {
             });
             user.password = user.encryptPassword(req.body.newPassword);
             await user.save();
-            res.redirect("/feeds");
+            return res.redirect("/feeds");
         }
 
-        res.render(viewsPath + "auth", { message: false, userData: new userData(req, res), validate: errors.errors });
+        return res.render(viewsPath + "auth", { message: false, userData: new userData(req, res), validate: errors.errors });
 
 
     },
     logout: (req, res) => req.logout(
         req.user, (err) => {
             if (err)
-                return err;
-            res.redirect("/auth/signin");
+                return res.json(err);
+            return res.redirect("/auth/signin");
         }
     ),
 

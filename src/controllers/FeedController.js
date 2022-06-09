@@ -1,8 +1,6 @@
 const PhotoModel = require("../model/PhotoModel");
 const AlbumModel = require("../model/AlbumModel");
-const fs = require('fs');
 const { viewsPath } = require("../config/Path.js");
-const { redirect } = require("express/lib/response");
 const date = require('date-and-time');
 const POST_PER_PAGE = 20;
 module.exports = {
@@ -14,7 +12,7 @@ module.exports = {
         let skip = (page - 1) * POST_PER_PAGE;
 
         if (!filter) {
-            res.redirect("?filter=photos");
+            return res.redirect("?filter=photos");
         }
         if (filter === "photos") {
             try {
@@ -26,15 +24,17 @@ module.exports = {
 
                     value.date = date.format(value.createdAt, "h:mm A DD/MM/YYYY");
                 })
-                res.render(viewsPath + "feeds", {
+
+                return res.render(viewsPath + "feeds", {
                     button: "photos",
                     photos,
                     user: req.user,
                     numberPhoto,
                     page,
                 });
-            } catch (err) {
 
+            } catch (err) {
+                return res.status(400).json(err);
             }
 
         }
@@ -47,14 +47,14 @@ module.exports = {
                 albums.forEach((value, index) => {
                     value.date = new Date(value.createdAt).toDateString();
                 })
-                res.render(viewsPath + "feeds", {
+                return res.render(viewsPath + "feeds", {
                     button: "albums",
                     albums,
                     user: req.user,
                     numberAlbum,
                 });
             } catch (err) {
-
+                return res.status(400).json(err);
             }
 
         }
